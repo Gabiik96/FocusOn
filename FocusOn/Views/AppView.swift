@@ -7,8 +7,11 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AppView: View {
+    
+    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     
     init() {
         UITabBar.appearance().isTranslucent = false
@@ -20,6 +23,7 @@ struct AppView: View {
                 .tabItem {
                     Image(systemName: "checkmark.rectangle")
                     Text("Progress")
+                    
                     }
                     
             TodayView()
@@ -35,8 +39,9 @@ struct AppView: View {
                     }
             
         }
-        
+//        .accentColor(accentColor: "secondaryOne")
     }
+
 }
 
 struct AppView_Previews: PreviewProvider {
@@ -45,3 +50,8 @@ struct AppView_Previews: PreviewProvider {
         AppView()
     }
 }
+
+
+
+
+
