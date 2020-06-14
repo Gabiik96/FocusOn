@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42A44FCA249028370039968B /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FC9249028370039968B /* Goal.swift */; };
+		42A44FCD249172970039968B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FCC249172970039968B /* Task.swift */; };
+		42A44FD1249187350039968B /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FD0249187350039968B /* ColorExtensions.swift */; };
+		42A44FD42491896D0039968B /* TabNavBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FD32491896D0039968B /* TabNavBarExtensions.swift */; };
 		42E9D474248987E000D66924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D473248987E000D66924 /* AppDelegate.swift */; };
 		42E9D476248987E000D66924 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D475248987E000D66924 /* SceneDelegate.swift */; };
 		42E9D479248987E000D66924 /* FocusOn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D477248987E000D66924 /* FocusOn.xcdatamodeld */; };
@@ -20,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42A44FC9249028370039968B /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		42A44FCC249172970039968B /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		42A44FD0249187350039968B /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		42A44FD32491896D0039968B /* TabNavBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavBarExtensions.swift; sourceTree = "<group>"; };
 		42E9D470248987E000D66924 /* FocusOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E9D473248987E000D66924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42E9D475248987E000D66924 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +53,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42A44FC8249028110039968B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				42E9D477248987E000D66924 /* FocusOn.xcdatamodeld */,
+				42A44FC9249028370039968B /* Goal.swift */,
+				42A44FCC249172970039968B /* Task.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		42A44FCF249187010039968B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42E9D473248987E000D66924 /* AppDelegate.swift */,
+				42E9D475248987E000D66924 /* SceneDelegate.swift */,
+				42E9D47C248987E000D66924 /* Assets.xcassets */,
+				42E9D481248987E000D66924 /* LaunchScreen.storyboard */,
+				42E9D484248987E000D66924 /* Info.plist */,
+				42A44FD2249189560039968B /* Extensions */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42A44FD2249189560039968B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				42A44FD0249187350039968B /* ColorExtensions.swift */,
+				42A44FD32491896D0039968B /* TabNavBarExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		42E9D467248987DF00D66924 = {
 			isa = PBXGroup;
 			children = (
@@ -64,13 +104,9 @@
 		42E9D472248987E000D66924 /* FocusOn */ = {
 			isa = PBXGroup;
 			children = (
-				42E9D473248987E000D66924 /* AppDelegate.swift */,
-				42E9D475248987E000D66924 /* SceneDelegate.swift */,
+				42A44FC8249028110039968B /* Model */,
 				42E9D48A248988C000D66924 /* Views */,
-				42E9D47C248987E000D66924 /* Assets.xcassets */,
-				42E9D481248987E000D66924 /* LaunchScreen.storyboard */,
-				42E9D484248987E000D66924 /* Info.plist */,
-				42E9D477248987E000D66924 /* FocusOn.xcdatamodeld */,
+				42A44FCF249187010039968B /* Supporting Files */,
 				42E9D47E248987E000D66924 /* Preview Content */,
 			);
 			path = FocusOn;
@@ -167,11 +203,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				42E9D474248987E000D66924 /* AppDelegate.swift in Sources */,
+				42A44FD1249187350039968B /* ColorExtensions.swift in Sources */,
 				42E9D476248987E000D66924 /* SceneDelegate.swift in Sources */,
+				42A44FD42491896D0039968B /* TabNavBarExtensions.swift in Sources */,
 				42E9D48E2489891300D66924 /* HistoryView.swift in Sources */,
 				42E9D49224898E2300D66924 /* TodayView.swift in Sources */,
 				42E9D48C248988F800D66924 /* AppView.swift in Sources */,
 				42E9D479248987E000D66924 /* FocusOn.xcdatamodeld in Sources */,
+				42A44FCA249028370039968B /* Goal.swift in Sources */,
+				42A44FCD249172970039968B /* Task.swift in Sources */,
 				42E9D4902489892700D66924 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,7 +352,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FocusOn/Preview Content\"";
 				DEVELOPMENT_TEAM = Q4YKPW2G86;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = FocusOn/Info.plist;
+				INFOPLIST_FILE = "FocusOn/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,7 +372,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FocusOn/Preview Content\"";
 				DEVELOPMENT_TEAM = Q4YKPW2G86;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = FocusOn/Info.plist;
+				INFOPLIST_FILE = "FocusOn/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
