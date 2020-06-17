@@ -10,12 +10,26 @@ import Foundation
 import UIKit
 
 extension UITabBarController {
-    override open func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override open func viewDidLoad() {
+        super.viewDidLoad()
         let standardAppearance = UITabBarAppearance()
 
-        standardAppearance.backgroundColor = .backgColor
+        standardAppearance.backgroundColor = .green
 
         tabBar.standardAppearance = standardAppearance
+    }
+}
+
+extension UINavigationController {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        let standardAppearance = UINavigationBarAppearance()
+        
+        standardAppearance.configureWithTransparentBackground()
+        standardAppearance.backgroundColor = .backgColor
+    
+        navigationBar.standardAppearance = standardAppearance
+        navigationBar.compactAppearance = standardAppearance
+        navigationBar.scrollEdgeAppearance = standardAppearance
     }
 }
