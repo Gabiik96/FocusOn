@@ -12,9 +12,13 @@ import CoreData
 public class Goal: NSManagedObject, Identifiable {
     static var entityName: String { return "Goal" }
     
+    //Attributes
     @NSManaged public var id: UUID
-    @NSManaged public var createdAt: Date?
-    @NSManaged public var title: String?
+    @NSManaged public var createdAt: Date
+    @NSManaged public var title: String
     @NSManaged public var complete: Bool
+    
+    //Relationship
+    @NSManaged public var tasks: NSMutableSet?
 }
 
