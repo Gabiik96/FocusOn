@@ -14,8 +14,6 @@ struct TodayView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @FetchRequest(entity: Goal.entity(), sortDescriptors: []) var goals: FetchedResults<Goal>
     
-    @State private var emptyText = ""
-    
     @State private var newGoal = ""
     @State private var task1 = Task()
     @State private var task2 = ""
@@ -29,11 +27,12 @@ struct TodayView: View {
     private let timeController = TimeController()
     private let dataController = DataController()
     
+    @State private var todayID = UUID()
+    
     
     var body: some View {
        
         NavigationView {
-        
                 List {
                     Section(header: Text("Goal for the day to focus on:")
                         .font(.system(size: 20, weight: .semibold))
@@ -44,27 +43,24 @@ struct TodayView: View {
                         if goalSet == false {
                             TextField("Set your goal..", text: self.$newGoal)
                             Button(action: {
-                                
-                                self.dataController.addNewGoal(title: self.newGoal)
-                                
-//                                let goal = Goal(context: self.moc)
-//                                goal.title = self.newGoal
-//                                goal.createdAt = Date()
-//
-                                do {
-                                    try self.moc.save()
-                                    print("Today goal saved")
-                                } catch {
-                                    print(error)
-                                }
+                                self.todayID = self.dataController.createEmptyGoalWithEmptyTasks()
+                                self.dataController.updateDeleteGoal(goalID: self.todayID, newTitle: self.newGoal, newDate: self.timeController.today, complete: false)
+        
                                 self.goalSet.toggle()
                             })
                             {
                                 Image(systemName: "plus.circle.fill")
                             }.buttonStyle(AddButton())
                         } else {
-                            Text(newGoal)
+                            TextField(newGoal, text: self.$newGoal)
                             
+                            Button(action: {
+                                self.dataController.updateDeleteGoal(goalID: self.todayID, newTitle: self.newGoal, complete: true)
+                            })
+                            {
+                                Image(systemName: "checkmark.circle")
+                                .imageScale(.large)
+                            }
                         }
                             }
                     }
@@ -75,10 +71,10 @@ struct TodayView: View {
                             if taskSet1 == false {
                                 Image(systemName: "1.circle.fill")
                                     .imageScale(.large)
-                                TextField("Define task", text: self.$emptyText)
+                                TextField("Define task", text: self.$task3)
                                 Button(action: {
                                     self.task1 = Task(context: self.moc)
-                                    self.task1.title = self.emptyText
+                                    self.task1.title = self.task3
                                 
                                     do {
                                         try self.moc.save()
@@ -94,7 +90,7 @@ struct TodayView: View {
                                 Image(systemName: "1.circle.fill")
                                 .imageScale(.large)
                                     
-                                Text(task1.title!)
+                                Text(task1.title)
                                 Button(action: {
                                     //HEREEEEE
                                     
@@ -162,7 +158,7 @@ struct TodayView: View {
                     
                 }
             }
-                .navigationBarTitle(Text("FocusOn Today"), displayMode: .automatic)
+                .navigationBarTitle(Text("FocusOn Today"))
         }
     }
 
