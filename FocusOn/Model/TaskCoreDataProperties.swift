@@ -6,19 +6,19 @@
 //  Copyright © 2020 Gabriel Balta. All rights reserved.
 //
 //
-//
-//import Foundation
-//import CoreData
-//
-//class Task: NSManagedObject {
-//    
-//    // Properties
-//    @NSManaged var id: UUID
-//    @NSManaged var title: String
-//    @NSManaged var complete: Bool
-//    
-//    // Relationships
-//    @NSManaged var goal: Goal
-//}
+
+import Foundation
+import CoreData
+
+class Task: NSManagedObject {
+    
+    // Properties
+    @NSManaged var id: UUID
+    @NSManaged var title: String
+    @NSManaged var complete: Bool
+    
+    // Relationships
+    @NSManaged var goal: Goal
+}
 
 
