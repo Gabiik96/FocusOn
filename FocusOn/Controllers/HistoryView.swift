@@ -7,8 +7,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HistoryView: View {
+    
+    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
+    @FetchRequest(entity: Goal.entity(), sortDescriptors: []) var goals: FetchedResults<Goal>
+    
     var body: some View {
         Text("This is historyView")
     }

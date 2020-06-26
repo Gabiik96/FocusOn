@@ -13,10 +13,6 @@ struct AppView: View {
     
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     
-    init() {
-        UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor(named: "tabColor")
-    }
     var body: some View {
         TabView {
             ProgressView()
@@ -39,9 +35,8 @@ struct AppView: View {
                     }
             
         }
-//        .accentColor(accentColor: "secondaryOne")
+        .accentColor(.textColor)
     }
-
 }
 
 struct AppView_Previews: PreviewProvider {
