@@ -12,11 +12,29 @@ import CoreData
 struct HistoryView: View {
     
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @FetchRequest(entity: Goal.entity(), sortDescriptors: []) var goals: FetchedResults<Goal>
+    @FetchRequest(entity: Goal.entity(), sortDescriptors: [NSSortDescriptor(key: #keyPath(Goal.createdAt), ascending: false)]) var goals: FetchedResults<Goal>
+    
+    private let timeController = TimeController()
+    private var dataController = DataController()
+    
+    @State var allGoals: [Goal]?
+    
     
     var body: some View {
-        Text("This is historyView")
+        List {
+            
+            if goals.count != 0 {
+                ForEach(goals) { goal in
+                    GoalView(goal: goal)
+                }
+            } else {
+                Text("Failed to fetch goals.")
+            }
+        }
+    
+        
     }
+    
 }
 
 struct HistoryView_Previews: PreviewProvider {
@@ -24,3 +42,5 @@ struct HistoryView_Previews: PreviewProvider {
         HistoryView()
     }
 }
+
+extension Goal: Identifiable { }

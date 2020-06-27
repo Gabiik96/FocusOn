@@ -15,6 +15,7 @@ protocol DataControllerDelegate {
 
 class DataController {
 
+    var notCompletedYesterdayGoal = [Goal]()
     var goals = [Goal]()
     var delegate: DataControllerDelegate?
     var moc: NSManagedObjectContext
@@ -30,22 +31,22 @@ class DataController {
     func createEmptyGoalWithEmptyTasks() -> UUID {
         let todayGoal = NSEntityDescription.insertNewObject(forEntityName: "Goal", into: self.moc) as! Goal
     
-        todayGoal.id = UUID()
+        todayGoal.goalID = UUID()
         todayGoal.title = ""
         todayGoal.complete = false
         todayGoal.createdAt = self.timeController.today
         delegate?.goals.append(todayGoal)
         
-        createEmptyTask(goalID: todayGoal.id)
+        createEmptyTask(goalID: todayGoal.goalID)
         
-        return todayGoal.id
+        return todayGoal.goalID
     }
     
     func createEmptyTask(goalID: UUID) {
         let emptyTask = NSEntityDescription.insertNewObject(forEntityName: "Task", into: self.moc) as! Task
         
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Goal")
-        fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(Goal.id), goalID as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(Goal.goalID), goalID as CVarArg)
         
         do {
             let result = try self.moc.fetch(fetchRequest)
@@ -75,7 +76,7 @@ class DataController {
     
     func updateDeleteGoal(goalID: UUID, newTitle: String? = nil, newDate: Date? = nil, complete: Bool? = nil, delete: Bool = false) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Goal")
-        fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(Goal.id), goalID as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(Goal.goalID), goalID as CVarArg)
         
         do {
             let result = try self.moc.fetch(fetchRequest)
@@ -128,9 +129,10 @@ class DataController {
                 let yesterdayGoal = fetchGoals(date: timeController.yesterday)
                 
                 if yesterdayGoal.count != 0 {
+                    
                     for goal in yesterdayGoal {
                         if goal.complete == false {
-                            
+                            notCompletedYesterdayGoal.append(goal)
                         }
                     }
                 }

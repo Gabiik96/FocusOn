@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ProgressView: View {
     var body: some View {
-        Text("And progressView")
+        Text("ProgressView")
     }
 }
 

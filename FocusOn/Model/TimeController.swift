@@ -27,4 +27,14 @@ class TimeController {
         return calendar.startOfDay(for: date)
     }
     
+    
+    func formatteDateToString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "MMM d yyyy"
+        let stringDate = dateFormatter.string(from: date)
+        
+        return stringDate
+    }
+    
 }

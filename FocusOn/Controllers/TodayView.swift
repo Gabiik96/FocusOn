@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+
 struct TodayView: View {
     
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
@@ -25,7 +26,7 @@ struct TodayView: View {
     @State private var taskSet3 = false
     
     private let timeController = TimeController()
-    private let dataController = DataController()
+    private var dataController = DataController()
     
     @State private var todayID = UUID()
     

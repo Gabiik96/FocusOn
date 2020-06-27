@@ -10,6 +10,7 @@
 		426E7247249AB0E100DC661E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7246249AB0E100DC661E /* DataController.swift */; };
 		426E7249249AB4FD00DC661E /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7248249AB4FD00DC661E /* TimeController.swift */; };
 		42878A6924995EAB004AC780 /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42878A6824995EAB004AC780 /* CustomButtons.swift */; };
+		429B29F224A6B03F0023E1EB /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F124A6B03F0023E1EB /* GoalView.swift */; };
 		429FBBD3249FD2F80075FDA3 /* TaskCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */; };
 		429FBBD5249FD2F80075FDA3 /* GoalCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */; };
 		42A44FD1249187350039968B /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FD0249187350039968B /* ColorExtensions.swift */; };
@@ -30,6 +31,7 @@
 		426E7246249AB0E100DC661E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		426E7248249AB4FD00DC661E /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
 		42878A6824995EAB004AC780 /* CustomButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
+		429B29F124A6B03F0023E1EB /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
 		429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCoreDataProperties.swift; sourceTree = "<group>"; };
 		429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCoreDataProperties.swift; sourceTree = "<group>"; };
 		42A44FD0249187350039968B /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				42878A6824995EAB004AC780 /* CustomButtons.swift */,
+				429B29F124A6B03F0023E1EB /* GoalView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				42878A6924995EAB004AC780 /* CustomButtons.swift in Sources */,
 				426E7249249AB4FD00DC661E /* TimeController.swift in Sources */,
 				42E9D48E2489891300D66924 /* HistoryView.swift in Sources */,
+				429B29F224A6B03F0023E1EB /* GoalView.swift in Sources */,
 				42E9D49224898E2300D66924 /* TodayView.swift in Sources */,
 				426E7247249AB0E100DC661E /* DataController.swift in Sources */,
 				42E9D48C248988F800D66924 /* AppView.swift in Sources */,

@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-class Task: NSManagedObject {
+class Task: NSManagedObject, Identifiable {
     
     // Properties
     @NSManaged var id: UUID

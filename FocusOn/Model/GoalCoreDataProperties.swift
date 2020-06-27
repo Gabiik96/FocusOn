@@ -13,7 +13,7 @@ import CoreData
 class Goal: NSManagedObject {
     
     // Properties
-    @NSManaged var id: UUID
+    @NSManaged var goalID: UUID
     @NSManaged var title: String
     @NSManaged var complete: Bool
     @NSManaged var createdAt: Date
