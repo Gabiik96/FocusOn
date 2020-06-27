@@ -14,7 +14,6 @@
 		429FBBD3249FD2F80075FDA3 /* TaskCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */; };
 		429FBBD5249FD2F80075FDA3 /* GoalCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */; };
 		42A44FD1249187350039968B /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FD0249187350039968B /* ColorExtensions.swift */; };
-		42A44FD42491896D0039968B /* TabNavBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FD32491896D0039968B /* TabNavBarExtensions.swift */; };
 		42E9D474248987E000D66924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D473248987E000D66924 /* AppDelegate.swift */; };
 		42E9D476248987E000D66924 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D475248987E000D66924 /* SceneDelegate.swift */; };
 		42E9D479248987E000D66924 /* FocusOn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D477248987E000D66924 /* FocusOn.xcdatamodeld */; };
@@ -35,7 +34,6 @@
 		429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCoreDataProperties.swift; sourceTree = "<group>"; };
 		429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCoreDataProperties.swift; sourceTree = "<group>"; };
 		42A44FD0249187350039968B /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
-		42A44FD32491896D0039968B /* TabNavBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavBarExtensions.swift; sourceTree = "<group>"; };
 		42E9D470248987E000D66924 /* FocusOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E9D473248987E000D66924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42E9D475248987E000D66924 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				42A44FD0249187350039968B /* ColorExtensions.swift */,
-				42A44FD32491896D0039968B /* TabNavBarExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,7 +222,6 @@
 				42E9D474248987E000D66924 /* AppDelegate.swift in Sources */,
 				42A44FD1249187350039968B /* ColorExtensions.swift in Sources */,
 				42E9D476248987E000D66924 /* SceneDelegate.swift in Sources */,
-				42A44FD42491896D0039968B /* TabNavBarExtensions.swift in Sources */,
 				42878A6924995EAB004AC780 /* CustomButtons.swift in Sources */,
 				426E7249249AB4FD00DC661E /* TimeController.swift in Sources */,
 				42E9D48E2489891300D66924 /* HistoryView.swift in Sources */,

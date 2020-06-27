@@ -21,15 +21,17 @@ struct HistoryView: View {
     
     
     var body: some View {
-        List {
-            
-            if goals.count != 0 {
-                ForEach(goals) { goal in
-                    GoalView(goal: goal)
+        NavigationView {
+            List {
+                
+                if goals.count != 0 {
+                    ForEach(goals) { goal in
+                        GoalView(goal: goal)
+                    }
+                } else {
+                    Text("Failed to fetch goals.")
                 }
-            } else {
-                Text("Failed to fetch goals.")
-            }
+            }.navigationBarTitle("FocusOn History")
         }
     
         
