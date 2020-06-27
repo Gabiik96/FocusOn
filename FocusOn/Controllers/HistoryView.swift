@@ -43,4 +43,3 @@ struct HistoryView_Previews: PreviewProvider {
     }
 }
 
-extension Goal: Identifiable { }

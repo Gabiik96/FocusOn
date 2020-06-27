@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-class Goal: NSManagedObject {
+class Goal: NSManagedObject, Identifiable {
     
     // Properties
     @NSManaged var goalID: UUID
