@@ -11,26 +11,35 @@ import SwiftUI
 struct GoalView: View {
     
     let timeController = TimeController()
-    var goal: Goal
     let dateFormatter = DateFormatter()
+    
+    var goal: Goal
+    var tasks: [Task]
     
     var body: some View {
         
         Section(header: Text(timeController.formatteDateToString(date: goal.createdAt))) {
-                       VStack {
-                           HStack() {
-                            Text(goal.title)
-                               .bold()
-                               .font(.largeTitle)
-                               .frame(height: 50.0)
-                           Spacer()
-                               Image(systemName: "checkmark.circle.fill")
-                                   .resizable()
-                                   .aspectRatio(contentMode: .fit)
-                                   .frame(width: 40.0, height: 50.0)
-                                   .foregroundColor(.green)
-                               
-                        }
+            VStack {
+                HStack {
+                    Text(goal.title)
+                        .font(.system(size: 500))
+                        .fontWeight(.medium)
+                        .minimumScaleFactor(0.01)
+                        .frame(height: 30.0)
+                    
+                    Spacer()
+                    Button(action: {
+                        self.goal.complete = (self.goal.complete ? false : true)
+                    })
+                    {
+                        Image(systemName: (goal.complete ? "checkmark.circle.fill" : "multiply.circle"))
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 40.0, height: 30.0)
+                            .foregroundColor(goal.complete ? .green : .red)
+                    }
+                }
+                
             }
         }
     }
