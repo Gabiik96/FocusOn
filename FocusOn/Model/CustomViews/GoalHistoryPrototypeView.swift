@@ -14,7 +14,8 @@ struct GoalView: View {
     let dateFormatter = DateFormatter()
     
     var goal: Goal
-    var tasks: [Task]
+    //    var tasks: [Task]
+    
     
     var body: some View {
         
@@ -35,11 +36,9 @@ struct GoalView: View {
                         Image(systemName: (goal.complete ? "checkmark.circle.fill" : "multiply.circle"))
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 40.0, height: 30.0)
                             .foregroundColor(goal.complete ? .green : .red)
-                    }
+                    }.buttonStyle(GoalCompletionBtn())
                 }
-                
             }
         }
     }
