@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftUICharts",
+        "repositoryURL": "https://github.com/AppPear/ChartView",
+        "state": {
+          "branch": null,
+          "revision": "47052674f5d3d6bb41b9cd9f3d1bd1dcf10e1562",
+          "version": "1.5.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

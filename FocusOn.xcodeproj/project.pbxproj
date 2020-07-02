@@ -3,14 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		426E7247249AB0E100DC661E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7246249AB0E100DC661E /* DataController.swift */; };
 		426E7249249AB4FD00DC661E /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7248249AB4FD00DC661E /* TimeController.swift */; };
 		42878A6924995EAB004AC780 /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42878A6824995EAB004AC780 /* CustomButtons.swift */; };
-		429B29F224A6B03F0023E1EB /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F124A6B03F0023E1EB /* GoalView.swift */; };
+		429B29F224A6B03F0023E1EB /* GoalHistoryPrototypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F124A6B03F0023E1EB /* GoalHistoryPrototypeView.swift */; };
+		429B29F524ABF8550023E1EB /* TodayGoalFilteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F424ABF8550023E1EB /* TodayGoalFilteredView.swift */; };
+		429B29F824AE809F0023E1EB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 429B29F724AE809F0023E1EB /* SwiftUICharts */; };
 		429FBBD3249FD2F80075FDA3 /* TaskCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */; };
 		429FBBD5249FD2F80075FDA3 /* GoalCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */; };
 		42A44FD1249187350039968B /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FD0249187350039968B /* ColorExtensions.swift */; };
@@ -30,7 +32,8 @@
 		426E7246249AB0E100DC661E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		426E7248249AB4FD00DC661E /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
 		42878A6824995EAB004AC780 /* CustomButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
-		429B29F124A6B03F0023E1EB /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
+		429B29F124A6B03F0023E1EB /* GoalHistoryPrototypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalHistoryPrototypeView.swift; sourceTree = "<group>"; };
+		429B29F424ABF8550023E1EB /* TodayGoalFilteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalFilteredView.swift; sourceTree = "<group>"; };
 		429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCoreDataProperties.swift; sourceTree = "<group>"; };
 		429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCoreDataProperties.swift; sourceTree = "<group>"; };
 		42A44FD0249187350039968B /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				429B29F824AE809F0023E1EB /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				42878A6824995EAB004AC780 /* CustomButtons.swift */,
-				429B29F124A6B03F0023E1EB /* GoalView.swift */,
+				429B29F124A6B03F0023E1EB /* GoalHistoryPrototypeView.swift */,
+				429B29F424ABF8550023E1EB /* TodayGoalFilteredView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -164,6 +169,9 @@
 			dependencies = (
 			);
 			name = FocusOn;
+			packageProductDependencies = (
+				429B29F724AE809F0023E1EB /* SwiftUICharts */,
+			);
 			productName = FocusOn;
 			productReference = 42E9D470248987E000D66924 /* FocusOn.app */;
 			productType = "com.apple.product-type.application";
@@ -192,6 +200,9 @@
 				Base,
 			);
 			mainGroup = 42E9D467248987DF00D66924;
+			packageReferences = (
+				429B29F624AE809F0023E1EB /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 42E9D471248987E000D66924 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -225,8 +236,9 @@
 				42878A6924995EAB004AC780 /* CustomButtons.swift in Sources */,
 				426E7249249AB4FD00DC661E /* TimeController.swift in Sources */,
 				42E9D48E2489891300D66924 /* HistoryView.swift in Sources */,
-				429B29F224A6B03F0023E1EB /* GoalView.swift in Sources */,
+				429B29F224A6B03F0023E1EB /* GoalHistoryPrototypeView.swift in Sources */,
 				42E9D49224898E2300D66924 /* TodayView.swift in Sources */,
+				429B29F524ABF8550023E1EB /* TodayGoalFilteredView.swift in Sources */,
 				426E7247249AB0E100DC661E /* DataController.swift in Sources */,
 				42E9D48C248988F800D66924 /* AppView.swift in Sources */,
 				42E9D479248987E000D66924 /* FocusOn.xcdatamodeld in Sources */,
@@ -426,6 +438,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		429B29F624AE809F0023E1EB /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		429B29F724AE809F0023E1EB /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 429B29F624AE809F0023E1EB /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		42E9D477248987E000D66924 /* FocusOn.xcdatamodeld */ = {
