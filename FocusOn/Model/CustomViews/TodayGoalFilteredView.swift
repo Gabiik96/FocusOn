@@ -16,7 +16,7 @@ struct TodayGoalFilteredView: View {
         fetchRequest.wrappedValue
     }
     var filteredGoals: [Goal]?
-    var todayGoal: Goal?x
+    var todayGoal: Goal?
     @State var goalTitle = " "
     
     var body: some View {

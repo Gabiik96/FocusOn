@@ -7,12 +7,23 @@
 //
 
 import SwiftUI
+import CoreData
+import SwiftUICharts
 
 struct ProgressView: View {
+    
+    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
+    @FetchRequest( entity: Goal.entity(), sortDescriptors: [] ) var allGoals: FetchedResults<Goal>
+    
     var body: some View {
-        Text("ProgressView")
+        NavigationView {
+            
+            HistoryMenuView()
+                .navigationBarTitle("FocusOn Progress")
+        }
     }
 }
+
 
 struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
