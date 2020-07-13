@@ -18,7 +18,7 @@ struct ProgressView: View {
     var body: some View {
         NavigationView {
             
-            HistoryMenuView()
+            ProgressMenuView()
                 .navigationBarTitle("FocusOn Progress")
         }
     }

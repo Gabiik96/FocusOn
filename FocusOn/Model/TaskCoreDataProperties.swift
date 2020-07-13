@@ -12,8 +12,12 @@ import CoreData
 
 class Task: NSManagedObject, Identifiable {
     
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Task> {
+        NSFetchRequest<Task>(entityName: "Task")
+    }
+    
     // Properties
-    @NSManaged var id: UUID
+    @NSManaged var taskID: UUID
     @NSManaged var title: String
     @NSManaged var complete: Bool
     
