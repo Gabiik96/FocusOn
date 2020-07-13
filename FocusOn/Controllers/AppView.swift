@@ -12,6 +12,7 @@ import CoreData
 struct AppView: View {
     
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
+    @FetchRequest( entity: Goal.entity(), sortDescriptors: [] ) var allGoals: FetchedResults<Goal>
     
     var body: some View {
         TabView {
@@ -20,19 +21,19 @@ struct AppView: View {
                     Image(systemName: "checkmark.rectangle")
                     Text("Progress")
                     
-                    }
-                    
+            }
+            
             TodayView()
                 .tabItem {
                     Image(systemName: "list.dash")
                     Text("Today")
-                    }
-        
+            }
+            
             HistoryView()
                 .tabItem {
                     Image(systemName: "calendar.circle")
                     Text("History")
-                    }
+            }
             
         }
         .accentColor(.textColor)
