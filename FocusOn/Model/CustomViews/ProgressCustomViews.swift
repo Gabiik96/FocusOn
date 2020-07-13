@@ -7,12 +7,17 @@
 //
 
 import SwiftUI
+import CoreData
 import SwiftUICharts
 
 
-struct HistoryMenuView: View {
+struct ProgressMenuView: View {
+    
+    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
+    @FetchRequest( entity: Goal.entity(), sortDescriptors: [] ) var allGoals: FetchedResults<Goal>
     
     let timePeriods = ["week", "month", "year"]
+    
     
     var body: some View {
         List {
@@ -31,6 +36,8 @@ struct HistoryMenuView: View {
 struct RectangleBtnView: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
+    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
+    @FetchRequest( entity: Goal.entity(), sortDescriptors: [] ) var allGoals: FetchedResults<Goal>
     
     var title: String
     

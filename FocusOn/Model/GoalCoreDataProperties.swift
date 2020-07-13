@@ -15,17 +15,22 @@ class Goal: NSManagedObject, Identifiable {
     // Properties
     @NSManaged var goalID: UUID
     @NSManaged var title: String
-    @NSManaged var complete: Bool
+    @NSManaged var complete: Bool 
     @NSManaged var createdAt: Date
+    @NSManaged var month: String
     
     // Relationship
-    @NSManaged var tasks: NSMutableSet?
+    @NSManaged var tasks: NSMutableSet
 }
 
 
 // MARK: Generated accessors for tasks
 extension Goal {
 
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Goal> {
+        NSFetchRequest<Goal>(entityName: "Goal")
+    }
+    
     @objc(addTasksObject:)
     @NSManaged public func addToTasks(_ value: Task)
 

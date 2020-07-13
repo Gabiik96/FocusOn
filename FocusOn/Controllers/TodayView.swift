@@ -13,9 +13,28 @@ import CoreData
 struct TodayView: View {
     
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @FetchRequest(entity: Goal.entity(), sortDescriptors: []) var goals: FetchedResults<Goal>
+    @FetchRequest(
+        entity: Goal.entity(),
+        sortDescriptors: [],
+        predicate: NSPredicate(format: "createdAt = %@",
+                               Calendar.current.startOfDay(for: Date()) as NSDate)
+    ) var todayFetch: FetchedResults<Goal>
+    @FetchRequest(
+        entity: Goal.entity(),
+        sortDescriptors: [],
+        predicate: NSPredicate(format: "createdAt = %@",
+                               Calendar.current.date(
+                                byAdding: .day,
+                                value: -1,
+                                to: Calendar.current.startOfDay(for: Date())
+                                )! as NSDate)
+    ) var yesterdayFetch: FetchedResults<Goal>
     
-    @State private var newGoal = ""
+    
+    
+    @State private var allGoals = [Goal]()
+    @State private var todayGoal = Goal()
+
     @State private var task1 = Task()
     @State private var task2 = ""
     @State private var task3 = ""
@@ -28,145 +47,53 @@ struct TodayView: View {
     private let timeController = TimeController()
     private var dataController = DataController()
     
-    @State private var todayID = UUID()
-    
-    
     var body: some View {
-       
         NavigationView {
-                List {
-                    Section(header: Text("Goal for the day to focus on:")
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(Color("textColor"))
-                        .frame(height: 45.0))
-                    {
-                    HStack {
-                        if goalSet == false {
-                            TextField("Set your goal..", text: self.$newGoal)
-                            Button(action: {
-                                self.todayID = self.dataController.createEmptyGoalWithEmptyTasks()
-                                self.dataController.updateDeleteGoal(goalID: self.todayID, newTitle: self.newGoal, newDate: self.timeController.today, complete: false)
-        
-                                self.goalSet.toggle()
-                            })
-                            {
-                                Image(systemName: "plus.circle.fill")
-                            }.buttonStyle(AddButton())
-                        } else {
-                            TextField(newGoal, text: self.$newGoal)
-                            
-                            Button(action: {
-                                self.dataController.updateDeleteGoal(goalID: self.todayID, newTitle: self.newGoal, complete: true)
-                            })
-                            {
-                                Image(systemName: "checkmark.circle")
-                                .imageScale(.large)
-                            }
-                        }
-                            }
-                    }
-                
-                Section(header: Text("3 tasks to achieve your goal")){
-                    VStack {
-                        HStack {
-                            if taskSet1 == false {
-                                Image(systemName: "1.circle.fill")
-                                    .imageScale(.large)
-                                TextField("Define task", text: self.$task3)
-                                Button(action: {
-                                    self.task1 = Task(context: self.moc)
-                                    self.task1.title = self.task3
-                                
-                                    do {
-                                        try self.moc.save()
-                                    } catch {
-                                        print(error)
-                                    }
-                                    self.taskSet1.toggle()
-                                })
-                                {
-                                    Image(systemName: "plus.circle.fill")
-                                }.buttonStyle(AddButton())
-                            } else {
-                                Image(systemName: "1.circle.fill")
-                                .imageScale(.large)
-                                    
-                                Text(task1.title)
-                                Button(action: {
-                                    //HEREEEEE
-                                    
-                                })
-                                {
-                                    
-                                    Image(systemName: "circle")
-                                        .imageScale(.large)
-                                }
-                            }
-                        }
-
-                        }
-                        HStack {
-                            if taskSet2 == false {
-                            Image(systemName: "2.circle.fill")
-                                .imageScale(.large)
-                            TextField("Define task", text: self.$task2)
-                            Button(action: {
-                                let task2 = Task(context: self.moc)
-                                task2.title = self.task2
-                                
-                                do {
-                                    try self.moc.save()
-                                } catch {
-                                    print(error)
-                                }
-                                self.taskSet2.toggle()
-                                })
-                            {
-                                Image(systemName: "plus.circle.fill")
-                            }.buttonStyle(AddButton())
-                            } else {
-                                Image(systemName: "2.circle.fill")
-                                .imageScale(.large)
-                                Text(task2)
-                            }
-                        }
-                        HStack {
-                            if taskSet3 == false {
-                            Image(systemName: "3.circle.fill")
-                                .imageScale(.large)
-                            TextField("Define task", text: self.$task3)
-                            Button(action: {
-                                let task3 = Task(context: self.moc)
-                                task3.title = self.task3
-                                
-                                do {
-                                    try self.moc.save()
-                                } catch {
-                                    print(error)
-                                }
-                                self.taskSet3.toggle()
-                                })
-                            {
-                                Image(systemName: "plus.circle.fill")
-                            }.buttonStyle(AddButton())
-                            } else {
-                                Image(systemName: "3.circle.fill")
-                                .imageScale(.large)
-                                Text(task3)
-                            }
-                        }
-                    }
-                    
+            if allGoals.count != 0 {
+                    ForEach(allGoals) { goal in
+                        TodayGoalView(todayGoal: goal)
+                            .environment(\.managedObjectContext, self.moc)
+                } .navigationBarTitle(Text("FocusOn Today"))
+            } else {
+                TodayEmptyGoalView(todayGoal: self.todayGoal)
+                    .environment(\.managedObjectContext, self.moc)
+                 .navigationBarTitle(Text("FocusOn Today"))
+            }
+        } .onAppear() { self.configure() }
+    }
+    
+    
+    func configure() {
+        if allGoals.count == 0 {
+            if todayFetch.count != 0 {
+                for goal in todayFetch {
+                    allGoals.append(goal)
                 }
             }
-                .navigationBarTitle(Text("FocusOn Today"))
+            if allGoals.count == 0 {
+                if yesterdayFetch.count != 0 {
+                    for goal in yesterdayFetch {
+                        if goal.complete == false {
+                            allGoals.append(goal)
+                        }
+                    }
+                }
+            }
+        }
+        if allGoals.count == 1 {
+            print("There is only one goal SUCCES!! ")
+            todayGoal = allGoals[0]
+        } else {
+            todayGoal = dataController.createEmptyGoalWithEmptyTasks(moc: moc)
+            for goal in allGoals {
+                print(goal.title)
+            }
+            print("Created new empty goal for today !! ")
         }
     }
-
-
-struct TodayView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayView()
- 
-    }
+    
 }
+
+
+
+
