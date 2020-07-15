@@ -11,12 +11,10 @@ import SwiftUI
 
 struct TodayGoalView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @State var refreshing = false
-    var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-
-    let dataController = DataController()
-    
     @ObservedObject var todayGoal: Goal
+    
+    let dataController = DataController()
+    var numberImages = ["1.circle.fill", "2.circle.fill", "3.circle.fill"]
     
     var body: some View {
         List {
@@ -27,10 +25,15 @@ struct TodayGoalView: View {
             {
                 HStack {
                     TextField("Set your goal..", text: self.$todayGoal.title)
+                        .font(.system(size: 25))
                     Button(action: {
                         self.todayGoal.complete = (self.todayGoal.complete ? false : true)
-                        self.dataController.updateDeleteGoal(
-                            goalID: self.todayGoal.goalID,
+                        for task in self.todayGoal.tasks.allObjects as! [Task] {
+                            if self.todayGoal.complete == true { task.complete = true }
+                            else { task.complete = false }
+                        }
+                        self.dataController.updateGoal(
+                            goal: self.todayGoal,
                             newTitle: self.todayGoal.title,
                             moc: self.moc
                         )
@@ -40,16 +43,13 @@ struct TodayGoalView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .foregroundColor(todayGoal.complete ? .green : .red)
-                    }.buttonStyle(CompletionBtn())
-                    .onReceive(self.didSave) { _ in self.refreshing.toggle() }
+                    }.buttonStyle(CompletionGoal())
                 }
             }
             Section(header: Text("3 tasks to achieve your goal"))
             {
-                ForEach(todayGoal.tasks.allObjects as! [Task]) { task in
-                    TodayTaskView(task: task, goalID: self.todayGoal.goalID)
-                    
-                    
+                ForEach(0..<todayGoal.tasks.allObjects.count) { task in
+                    TodayTaskView(task: self.todayGoal.tasks.allObjects[task] as! Task, image: self.numberImages[task])
                 }
             }
         }
@@ -58,13 +58,12 @@ struct TodayGoalView: View {
 
 struct TodayEmptyGoalView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @State var refreshing = false
-    var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-
+    @ObservedObject var todayGoal: Goal
+    
     let dataController = DataController()
     let timeController = TimeController()
+    var numberImages = ["1.circle.fill", "2.circle.fill", "3.circle.fill"]
     
-    @ObservedObject var todayGoal: Goal
     @State private var title = ""
     @State private var goalSet = false
     
@@ -78,36 +77,29 @@ struct TodayEmptyGoalView: View {
                 HStack {
                     if goalSet == false {
                         TextField("Set your goal..", text: self.$title)
+                            .font(.system(size: 25))
                         Button(action: {
-                            self.dataController.updateDeleteGoal(
-                                goalID: self.todayGoal.goalID,
+                            self.dataController.updateGoal(
+                                goal: self.todayGoal,
                                 newTitle: self.title,
                                 newDate: self.timeController.today,
-                                complete: false,
+                                completed: false,
                                 moc: self.moc
                             )
-                            
                             self.goalSet.toggle()
                         })
                         {
                             Image(systemName: "plus.circle.fill")
                         }.buttonStyle(AddButton())
-                        // here is the listener for published context event
-                        .onReceive(self.didSave) { _ in self.refreshing.toggle() }
                     } else {
                         TextField("Set your goal..", text: self.$title)
                         Button(action: {
-                            self.dataController.updateDeleteGoal(
-                                goalID: self.todayGoal.goalID,
+                            self.todayGoal.complete = (self.todayGoal.complete ? false : true)
+                            self.dataController.updateGoal(
+                                goal: self.todayGoal,
                                 newTitle: self.title,
                                 newDate: self.timeController.today,
-                                complete: false,
-                                moc: self.moc
-                            )
-                            self.todayGoal.complete = (self.todayGoal.complete ? false : true)
-                            self.dataController.updateDeleteGoal(
-                                goalID: self.todayGoal.goalID,
-                                newTitle: self.todayGoal.title,
+                                completed: false,
                                 moc: self.moc
                             )
                         })
@@ -116,23 +108,21 @@ struct TodayEmptyGoalView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .foregroundColor(todayGoal.complete ? .green : .red)
-                        }.buttonStyle(CompletionBtn())
-                        .onReceive(self.didSave) { _ in self.refreshing.toggle() }
+                        }.buttonStyle(CompletionGoal())
                     }
                 }
             }
-                Section(header: Text("3 tasks to achieve your goal"))
-                {
-                    VStack {
-                if goalSet == false {
-                    Text("To access tasks, please set up your goal.")
-                } else {
-                        ForEach(todayGoal.tasks.allObjects as! [Task]) { task in
-                            TodayTaskView(task: task, goalID: self.todayGoal.goalID)
-                            
+            Section(header: Text("3 tasks to achieve your goal"))
+            {
+                VStack {
+                    if goalSet == false {
+                        Text("To access tasks, please set up your goal.")
+                    } else {
+                        ForEach(0..<todayGoal.tasks.allObjects.count) { task in
+                            TodayTaskView(task: self.todayGoal.tasks.allObjects[task] as! Task, image: self.numberImages[task])
                         }
                     }
-                
+                    
                 }
             }
         }
@@ -142,32 +132,43 @@ struct TodayEmptyGoalView: View {
 
 struct TodayTaskView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
+    @ObservedObject var task: Task
     
     let dataController = DataController()
-    
-    @State var task: Task
-    let goalID: UUID
+    fileprivate var image: String
     
     var body: some View {
         HStack {
-            Image(systemName: "1.circle.fill")
+            Image(systemName: image)
                 .imageScale(.large)
             TextField("Define task", text: self.$task.title)
-            Button(action: {
-                if self.task.complete == false {
-                    self.dataController.updateOrDeleteTask(taskID: self.task.taskID, goalID: self.goalID, completed: true)
-                    self.task.complete.toggle()
-                } else {
-                    self.dataController.updateOrDeleteTask(taskID: self.task.taskID, goalID: self.goalID, completed: false)
-                    self.task.complete.toggle()
-                }
-            })
-            {
-                Image(systemName: "plus.circle.fill")
-            }.buttonStyle(AddButton())
+            
+            if task.title == "" {
+                Button(action: {
+                    if self.task.complete == false {
+                        self.dataController.updateTask(task: self.task, completed: true, moc: self.moc)
+                        self.task.complete.toggle()
+                    } else {
+                        self.dataController.updateTask(task: self.task, completed: true, moc: self.moc)
+                        self.task.complete.toggle()
+                    }
+                })
+                {
+                    Image(systemName: "plus.circle.fill")
+                }.buttonStyle(AddButton())
+            } else {
+                Button(action: {
+                    self.task.complete = (self.task.complete ? false : true)
+                    self.dataController.updateTask(task: self.task, newTitle: self.task.title, completed: self.task.complete, moc: self.moc)
+                })
+                {
+                    Image(systemName: (task.complete ? "checkmark.circle.fill" : "multiply.circle"))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(task.complete ? .green : .red)
+                }.buttonStyle(CompletionTask())
+            }
         }
     }
-    
-    
 }
 

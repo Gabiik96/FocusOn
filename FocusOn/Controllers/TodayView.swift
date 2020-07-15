@@ -30,20 +30,9 @@ struct TodayView: View {
                                 )! as NSDate)
     ) var yesterdayFetch: FetchedResults<Goal>
     
-    
-    
-    @State private var allGoals = [Goal]()
     @State private var todayGoal = Goal()
+    @State private var allGoals = [Goal]()
 
-    @State private var task1 = Task()
-    @State private var task2 = ""
-    @State private var task3 = ""
-    
-    @State private var goalSet = false
-    @State private var taskSet1 = false
-    @State private var taskSet2 = false
-    @State private var taskSet3 = false
-    
     private let timeController = TimeController()
     private var dataController = DataController()
     
@@ -61,7 +50,6 @@ struct TodayView: View {
             }
         } .onAppear() { self.configure() }
     }
-    
     
     func configure() {
         if allGoals.count == 0 {
@@ -81,17 +69,11 @@ struct TodayView: View {
             }
         }
         if allGoals.count == 1 {
-            print("There is only one goal SUCCES!! ")
             todayGoal = allGoals[0]
         } else {
             todayGoal = dataController.createEmptyGoalWithEmptyTasks(moc: moc)
-            for goal in allGoals {
-                print(goal.title)
-            }
-            print("Created new empty goal for today !! ")
         }
     }
-    
 }
 
 

@@ -9,21 +9,10 @@
 import SwiftUI
 import CoreData
 
-protocol DataControllerDelegate {
-    var goals: [Goal] { get set }
-}
-
 class DataController {
-    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     
     var goals = [Goal]()
-    var delegate: DataControllerDelegate?
     var timeController = TimeController()
-    
-//    init() {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        moc = appDelegate.persistentContainer.viewContext
-//    }
     
     //     MARK:- Add data
     
@@ -35,41 +24,45 @@ class DataController {
         todayGoal.complete = false
         todayGoal.month = self.timeController.formattedMonthToString(date: Date())
         todayGoal.createdAt = self.timeController.today
-        delegate?.goals.append(todayGoal)
         
         for _ in 1...3 {
-            createEmptyTask(goalID: todayGoal.goalID)
+            createEmptyTask(moc: moc, goal: todayGoal)
         }
-        
-        do {
-                   try moc.save()
-               } catch {
-                   print("Failed to save MOC. \(error)")
-                   moc.rollback()
-               }
+        saveMoc(moc: moc)
         
         return todayGoal
     }
     
-    func createEmptyTask(goalID: UUID) {
-        let emptyTask = NSEntityDescription.insertNewObject(forEntityName: "Task", into: self.moc) as! Task
-        
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Goal")
-        fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(Goal.goalID), goalID as CVarArg)
-        
-        do {
-            let result = try self.moc.fetch(fetchRequest)
-            if let returnedResult = result as? [Goal] {
-                if returnedResult.count != 0 {
-                    let fetchedGoal = returnedResult.first!
+    func createEmptyTask(moc: NSManagedObjectContext, goal: Goal) {
+        let emptyTask = Task(context: moc)
                     
-                    emptyTask.title = ""
-                    emptyTask.complete = false
-                    emptyTask.goal = fetchedGoal
-                } else { print("Fetch result failed, empty for Goal ID: \(goalID)") }
-            }
-        } catch { print("Fetch failed, Goal ID: \(goalID) error: \(error)")}
+        emptyTask.title = ""
+        emptyTask.complete = false
+        emptyTask.goal = goal
         
+        saveMoc(moc: moc)
+    }
+    
+    //MARK: - Update data
+    
+    func updateGoal(goal: Goal, newTitle: String? = nil, newDate: Date? = nil, completed: Bool? = nil, moc: NSManagedObjectContext) {
+       
+        if newTitle != nil { goal.title = newTitle! }
+        if newDate != nil { goal.createdAt = newDate! }
+        if let completed = completed { goal.complete = completed}
+        
+        saveMoc(moc: moc)
+    }
+    
+    func updateTask(task: Task, newTitle: String? = nil, completed: Bool? = nil, moc: NSManagedObjectContext) {
+        
+        if newTitle != nil { task.title = newTitle! }
+        if let completed = completed { task.complete = completed }
+        
+        saveMoc(moc: moc)
+    }
+    
+    func saveMoc(moc: NSManagedObjectContext) {
         do {
             try moc.save()
         } catch {
@@ -77,88 +70,5 @@ class DataController {
             moc.rollback()
         }
     }
-    
-    
-    
-    //MARK: - Update data / Delete data
-    
-    func updateDeleteGoal(goalID: UUID, newTitle: String? = nil, newDate: Date? = nil, complete: Bool? = nil, delete: Bool = false, moc: NSManagedObjectContext) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Goal")
-        fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(Goal.goalID), goalID as CVarArg)
-        
-        do {
-            let result = try moc.fetch(fetchRequest)
-            if let returnedResult = result as? [Goal] {
-                if returnedResult.count != 0 {
-                    let fetchedGoal = returnedResult.first!
-                    
-                    if delete {
-                        // Delete fetchedGoal with its current Tasks
-                        moc.delete(fetchedGoal)
-                    } else {
-                        // Update new values for fetchedGoal
-                        if newTitle != nil { fetchedGoal.title = newTitle! }
-                        if newDate != nil { fetchedGoal.createdAt = newDate! }
-                        if complete != nil { fetchedGoal.complete = complete! }
-                    }
-                    
-                    do {
-                        try moc.save()
-                    } catch {
-                        print("Failed to save update on Goal. \(error)")
-                        moc.rollback()
-                    }
-                } else { print("Fetch result failed, empty for Goal ID: \(goalID)") }
-            }
-        } catch { print("Failed to save MOC. \(error)") }
-    }
-    
-    func updateOrDeleteTask(taskID: UUID, goalID: UUID, newTitle: String? = nil, completed: Bool? = nil, delete: Bool = false) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Task")
-        let withGoalIDPredicate = NSPredicate(format: "%K == %@", #keyPath(Task.goal.goalID), "\(goalID)")
-        let findTaskPredicate = NSPredicate(format: "%K == %@", #keyPath(Task.taskID), "\(taskID)")
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [withGoalIDPredicate, findTaskPredicate])
-        
-        do {
-            let result = try moc.fetch(fetchRequest)
-            if let returnedResult = result as? [Task] {
-                if returnedResult.count != 0 {
-                    let fetchedTask = returnedResult.first!
-                    
-                    if delete {
-                        // Delete goal (This also deletes all corosponding tasks!)
-                        moc.delete(fetchedTask)
-                    } else {
-                        // Set new values for goal if not nill.
-                        if let newTitle = newTitle { fetchedTask.title = newTitle }
-                        if let completed = completed { fetchedTask.complete = completed }
-                    }
-                    
-                    do {
-                        try moc.save()
-                    } catch {
-                        print("Save failed: \(error)")
-                        moc.rollback()
-                    }
-                } else {
-                    print("Fetch result was empty for specified task id: \(taskID), goal id: \(goalID).")
-                }
-            }
-        } catch {
-            print("Fetch on task id: \(taskID), goal id: \(goalID) failed. \(error)")
-        }
-    }
-    
-    
-    //MARK: - Data fetching
-    
-    
-    //    func filterDataByMonth(data: [Goal]) {
-    //        let filteredData = data.filter { (dat) -> Bool in
-    //            let
-    //        }
-    
-    //    }
-    
-    
+
 }
