@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-//MARK: - Green Symbol Add Button
+//MARK: - Button
 
 struct AddButton: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
@@ -42,22 +42,31 @@ struct CompletionTask: ButtonStyle {
     }
 }
 
-struct AnimatedGradientView2: View {
-    
-    @State var gradient = [Color.white, Color.green]
-    @State var startPoint = UnitPoint(x: 0.5, y: -1)
-    @State var endPoint = UnitPoint(x: 0, y: 1)
-    
-    var body: some View {
-        Rectangle()
-            .fill(LinearGradient(gradient: Gradient(colors: self.gradient), startPoint: self.startPoint, endPoint: self.endPoint))
+//MARK: - Divider
 
-            .onTapGesture {
-                withAnimation (.easeInOut(duration: 3)){
-                    self.startPoint = UnitPoint(x: 1, y: -1)
-                    self.endPoint = UnitPoint(x: 0, y: 1)
-                }
+struct LabelledDivider: View {
+
+    let label: String
+    let horizontalPadding: CGFloat
+    let color: Color
+
+    init(label: String, horizontalPadding: CGFloat = 20, color: Color = .gray) {
+        self.label = label
+        self.horizontalPadding = horizontalPadding
+        self.color = color
+    }
+
+    var body: some View {
+        HStack {
+            line
+            Text(label).foregroundColor(color)
+            line
         }
     }
+
+    var line: some View {
+        VStack { Divider().background(color) }.padding(horizontalPadding)
+    }
 }
+
 
