@@ -18,7 +18,12 @@ struct HistoryView: View {
                                            ascending: false)]
     ) var allGoals: FetchedResults<Goal>
     
+    @State private var goals = [Goal]()
+    @State var monthsUsed = [Goal]()
+    @State var goalsSeparatedByMonth = [monthGoals]()
     
+    @State private var currentYear = ""
+    private var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     
     private let timeController = TimeController()
     private var dataController = DataController()
@@ -26,11 +31,13 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(allGoals) { goal in
-                    HistoryBlockView(goal: goal)
-                }.onDelete(perform: removeGoal)
-            }.navigationBarTitle("FocusOn History")
-        }
+                ForEach(goalsSeparatedByMonth) { monthWithGoals in
+                    if monthWithGoals.goals != nil {
+                        HistoryMonthView(monthWithGoals: monthWithGoals)
+                    }
+                }.navigationBarTitle(Text("FocusOn History"))
+            }
+        }.onAppear() { self.configure() }
     }
     
     func removeGoal(at offsets: IndexSet) {
@@ -45,6 +52,45 @@ struct HistoryView: View {
             }
         }
     }
+    
+    func configure() {
+        
+        self.currentYear = self.timeController.formattedYearToString(date: self.timeController.today)
+        self.goalsSeparatedByMonth.removeAll()
+        
+        for goal in allGoals {
+            self.goals.append(goal)
+        }
+        
+        while self.goals.count != 0 {
+            
+            for month in self.allMonths {
+                var object = monthGoals(id: UUID(), month: month, year: self.currentYear)
+                object.goals = allGoals.filter ({ $0.month == "\(month) \(self.currentYear)" })
+                
+                self.goalsSeparatedByMonth.append(object)
+                
+                if object.goals?.count != 0 {
+                    for goal in object.goals! {
+                        let index = goals.firstIndex(where: { $0 === goal })
+                        self.goals.remove(at: index!)
+                    }
+                }
+            }
+            self.currentYear = String((Int(self.currentYear)! - 1 ))
+        }
+        
+        removeEmptyMonths(goalsSeparatedByMonth: self.goalsSeparatedByMonth)
+    }
+    
+    func removeEmptyMonths(goalsSeparatedByMonth: [monthGoals]) {
+        for monthWithGoals in goalsSeparatedByMonth {
+            if monthWithGoals.goals?.count == 0 {
+                self.goalsSeparatedByMonth.removeAll(where: { $0 == monthWithGoals })
+            }
+        }
+    }
+    
 }
 
 
