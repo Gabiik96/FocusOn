@@ -68,4 +68,12 @@ struct TimeController {
         return nameOfMonth
     }
     
+    func formattedYearToString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let nameOfMonth = dateFormatter.string(from: date)
+        
+        return nameOfMonth
+    }
+    
 }
