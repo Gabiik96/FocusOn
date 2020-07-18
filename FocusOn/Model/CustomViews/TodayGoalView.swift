@@ -58,7 +58,7 @@ struct TodayGoalView: View {
 
 struct TodayEmptyGoalView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @ObservedObject var todayGoal: Goal
+    @State var todayGoal: Goal
     
     let dataController = DataController()
     let timeController = TimeController()
@@ -79,6 +79,7 @@ struct TodayEmptyGoalView: View {
                         TextField("Set your goal..", text: self.$title)
                             .font(.system(size: 25))
                         Button(action: {
+                            self.todayGoal =  self.dataController.createEmptyGoalWithEmptyTasks(moc: self.moc)
                             self.dataController.updateGoal(
                                 goal: self.todayGoal,
                                 newTitle: self.title,

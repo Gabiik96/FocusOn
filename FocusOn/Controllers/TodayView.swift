@@ -70,8 +70,6 @@ struct TodayView: View {
         }
         if allGoals.count == 1 {
             todayGoal = allGoals[0]
-        } else {
-            todayGoal = dataController.createEmptyGoalWithEmptyTasks(moc: moc)
         }
     }
 }
