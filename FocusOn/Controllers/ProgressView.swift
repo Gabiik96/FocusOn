@@ -22,6 +22,7 @@ struct ProgressView: View {
                 .navigationBarTitle("FocusOn Progress")
         }
     }
+    
 }
 
 

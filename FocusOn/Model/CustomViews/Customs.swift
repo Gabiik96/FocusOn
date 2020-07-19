@@ -17,11 +17,6 @@ struct AddButton: ButtonStyle {
             .imageScale(.large)
             .scaleEffect(configuration.isPressed ? 1.3 : 1.0)
     }
-    
-    func scaleAnimation(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 1.5 : 1.0)
-    }
 }
 
 struct CompletionGoal: ButtonStyle {
@@ -50,7 +45,7 @@ struct LabelledDivider: View {
     let horizontalPadding: CGFloat
     let color: Color
 
-    init(label: String, horizontalPadding: CGFloat = 20, color: Color = .gray) {
+    init(label: String, horizontalPadding: CGFloat = 10, color: Color = .divColor ) {
         self.label = label
         self.horizontalPadding = horizontalPadding
         self.color = color

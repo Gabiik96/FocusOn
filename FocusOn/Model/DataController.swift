@@ -14,7 +14,7 @@ class DataController {
     var goals = [Goal]()
     var timeController = TimeController()
     
-    //     MARK:- Add data
+    //MARK:- Add data
     
     func createEmptyGoalWithEmptyTasks(moc: NSManagedObjectContext) -> Goal {
         let todayGoal = Goal(context: moc)
@@ -49,7 +49,7 @@ class DataController {
        
         if newTitle != nil { goal.title = newTitle! }
         if newDate != nil { goal.createdAt = newDate! }
-        if let completed = completed { goal.complete = completed}
+        if let completed = completed { goal.complete = completed }
         
         saveMoc(moc: moc)
     }

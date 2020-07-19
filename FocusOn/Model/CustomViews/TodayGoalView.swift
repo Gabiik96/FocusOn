@@ -25,6 +25,7 @@ struct TodayGoalView: View {
             {
                 HStack {
                     TextField("Set your goal..", text: self.$todayGoal.title)
+                        .onReceive(self.todayGoal.objectWillChange, perform: { self.dataController.saveMoc(moc: self.moc) })
                         .font(.system(size: 25))
                     Button(action: {
                         self.todayGoal.complete = (self.todayGoal.complete ? false : true)
@@ -111,6 +112,7 @@ struct TodayTaskView: View {
                 .frame(width: 25, height: 25)
                 .foregroundColor(Color.divColor)
             TextField("Define task", text: self.$task.title)
+            .onReceive(self.task.objectWillChange, perform: { self.dataController.saveMoc(moc: self.moc) })
             if task.title == "" {
                 Button(action: {
                     self.btnPressed()

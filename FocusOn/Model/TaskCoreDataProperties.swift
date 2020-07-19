@@ -12,6 +12,11 @@ import CoreData
 
 class Task: NSManagedObject, Identifiable {
     
+    override public func willChangeValue(forKey key: String) {
+        super.willChangeValue(forKey: key)
+        self.objectWillChange.send()
+    }
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Task> {
         NSFetchRequest<Task>(entityName: "Task")
     }
