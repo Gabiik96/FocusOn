@@ -13,6 +13,7 @@ import SwiftUI
 extension UIColor {
     static let backgColor = UIColor(named: "backgroundColor")
     static let tabColor = UIColor(named: "tabColor")
+    static let divColor = UIColor(named: "divColor")
     static let textColor = UIColor(named: "textColor")
     static let iconColor = UIColor(named: "iconColor")
     static let headerColor = UIColor(named: "headerColor")
@@ -21,6 +22,7 @@ extension UIColor {
 extension Color {
     static let backgColor = Color("backgroundColor")
     static let tabColor = Color("tabColor")
+    static let divColor = Color("divColor")
     static let textColor = Color("textColor")
     static let iconColor = Color("iconColor")
     static let headerColor = Color("headerColor")

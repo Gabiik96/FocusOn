@@ -14,7 +14,7 @@ struct TodayGoalView: View {
     @ObservedObject var todayGoal: Goal
     
     let dataController = DataController()
-    var numberImages = ["1.circle.fill", "2.circle.fill", "3.circle.fill"]
+    var numberImages = ["1.circle", "2.circle", "3.circle"]
     
     var body: some View {
         List {
@@ -30,7 +30,6 @@ struct TodayGoalView: View {
                         self.todayGoal.complete = (self.todayGoal.complete ? false : true)
                         for task in self.todayGoal.tasks.allObjects as! [Task] {
                             if self.todayGoal.complete == true { task.complete = true }
-                            else { task.complete = false }
                         }
                         self.dataController.updateGoal(
                             goal: self.todayGoal,
@@ -49,7 +48,7 @@ struct TodayGoalView: View {
             Section(header: Text("3 tasks to achieve your goal"))
             {
                 ForEach(0..<todayGoal.tasks.allObjects.count) { task in
-                    TodayTaskView(task: self.todayGoal.tasks.allObjects[task] as! Task, image: self.numberImages[task])
+                    TodayTaskView(task: self.todayGoal.tasks.allObjects[task] as! Task, goal: self.todayGoal, image: self.numberImages[task])
                 }
             }
         }
@@ -58,14 +57,11 @@ struct TodayGoalView: View {
 
 struct TodayEmptyGoalView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @State var todayGoal: Goal
+    @ObservedObject var todayGoal: Goal
     
     let dataController = DataController()
-    let timeController = TimeController()
-    var numberImages = ["1.circle.fill", "2.circle.fill", "3.circle.fill"]
     
     @State private var title = ""
-    @State private var goalSet = false
     
     var body: some View {
         List {
@@ -75,56 +71,24 @@ struct TodayEmptyGoalView: View {
                 .frame(height: 45.0))
             {
                 HStack {
-                    if goalSet == false {
-                        TextField("Set your goal..", text: self.$title)
-                            .font(.system(size: 25))
-                        Button(action: {
-                            self.todayGoal =  self.dataController.createEmptyGoalWithEmptyTasks(moc: self.moc)
-                            self.dataController.updateGoal(
-                                goal: self.todayGoal,
-                                newTitle: self.title,
-                                newDate: self.timeController.today,
-                                completed: false,
-                                moc: self.moc
-                            )
-                            self.goalSet.toggle()
-                        })
-                        {
-                            Image(systemName: "plus.circle.fill")
-                        }.buttonStyle(AddButton())
-                    } else {
-                        TextField("Set your goal..", text: self.$title)
-                        Button(action: {
-                            self.todayGoal.complete = (self.todayGoal.complete ? false : true)
-                            self.dataController.updateGoal(
-                                goal: self.todayGoal,
-                                newTitle: self.title,
-                                newDate: self.timeController.today,
-                                completed: false,
-                                moc: self.moc
-                            )
-                        })
-                        {
-                            Image(systemName: (todayGoal.complete ? "checkmark.circle.fill" : "multiply.circle"))
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(todayGoal.complete ? .green : .red)
-                        }.buttonStyle(CompletionGoal())
-                    }
+                    TextField("Set your goal..", text: self.$title)
+                        .font(.system(size: 25))
+                    Button(action: {
+                        self.todayGoal.title = self.title
+                        self.dataController.updateGoal(
+                            goal: self.todayGoal,
+                            newTitle: self.todayGoal.title,
+                            moc: self.moc
+                        )
+                    })
+                    {
+                        Image(systemName: "plus.circle.fill")
+                    }.buttonStyle(AddButton())
                 }
             }
             Section(header: Text("3 tasks to achieve your goal"))
             {
-                VStack {
-                    if goalSet == false {
-                        Text("To access tasks, please set up your goal.")
-                    } else {
-                        ForEach(0..<todayGoal.tasks.allObjects.count) { task in
-                            TodayTaskView(task: self.todayGoal.tasks.allObjects[task] as! Task, image: self.numberImages[task])
-                        }
-                    }
-                    
-                }
+                Text("To access tasks, please set up your goal.")
             }
         }
     }
@@ -134,6 +98,7 @@ struct TodayEmptyGoalView: View {
 struct TodayTaskView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @ObservedObject var task: Task
+    @ObservedObject var goal: Goal
     
     let dataController = DataController()
     fileprivate var image: String
@@ -141,26 +106,24 @@ struct TodayTaskView: View {
     var body: some View {
         HStack {
             Image(systemName: image)
-                .imageScale(.large)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 25, height: 25)
+                .foregroundColor(Color.divColor)
             TextField("Define task", text: self.$task.title)
-            
             if task.title == "" {
                 Button(action: {
-                    if self.task.complete == false {
-                        self.dataController.updateTask(task: self.task, completed: true, moc: self.moc)
-                        self.task.complete.toggle()
-                    } else {
-                        self.dataController.updateTask(task: self.task, completed: true, moc: self.moc)
-                        self.task.complete.toggle()
-                    }
+                    self.btnPressed()
                 })
                 {
                     Image(systemName: "plus.circle.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
                 }.buttonStyle(AddButton())
+                .frame(width: 25.0, height: 25.0)
             } else {
                 Button(action: {
-                    self.task.complete = (self.task.complete ? false : true)
-                    self.dataController.updateTask(task: self.task, newTitle: self.task.title, completed: self.task.complete, moc: self.moc)
+                    self.btnPressed()
                 })
                 {
                     Image(systemName: (task.complete ? "checkmark.circle.fill" : "multiply.circle"))
@@ -170,6 +133,16 @@ struct TodayTaskView: View {
                 }.buttonStyle(CompletionTask())
             }
         }
+    }
+    
+    func btnPressed() {
+        if self.task.complete == true && self.goal.complete == true {
+            self.goal.complete.toggle()
+            self.task.complete.toggle()
+        } else {
+            self.task.complete.toggle()
+        }
+        self.dataController.updateTask(task: self.task, newTitle: self.task.title, completed: self.task.complete, moc: self.moc)
     }
 }
 

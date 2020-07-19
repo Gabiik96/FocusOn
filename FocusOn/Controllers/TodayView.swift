@@ -30,48 +30,25 @@ struct TodayView: View {
                                 )! as NSDate)
     ) var yesterdayFetch: FetchedResults<Goal>
     
-    @State private var todayGoal = Goal()
-    @State private var allGoals = [Goal]()
-
-    private let timeController = TimeController()
-    private var dataController = DataController()
+    private let dataController = DataController()
     
     var body: some View {
         NavigationView {
-            if allGoals.count != 0 {
-                    ForEach(allGoals) { goal in
-                        TodayGoalView(todayGoal: goal)
-                            .environment(\.managedObjectContext, self.moc)
-                } .navigationBarTitle(Text("FocusOn Today"))
-            } else {
-                TodayEmptyGoalView(todayGoal: self.todayGoal)
-                    .environment(\.managedObjectContext, self.moc)
-                 .navigationBarTitle(Text("FocusOn Today"))
-            }
-        } .onAppear() { self.configure() }
+            Group {
+                if todayFetch.count != 0 {
+                    TodayGoalView(todayGoal: todayFetch.first!)
+                        .environment(\.managedObjectContext, self.moc)
+                } else if yesterdayFetch.count != 0 {
+                    TodayGoalView(todayGoal: yesterdayFetch.first!)
+                        .environment(\.managedObjectContext, self.moc)
+                } else {
+                    TodayEmptyGoalView(todayGoal: dataController.createEmptyGoalWithEmptyTasks(moc: moc))
+                        .environment(\.managedObjectContext, self.moc)
+                }
+            }.navigationBarTitle(Text("FocusOn Today"))
+        }
     }
     
-    func configure() {
-        if allGoals.count == 0 {
-            if todayFetch.count != 0 {
-                for goal in todayFetch {
-                    allGoals.append(goal)
-                }
-            }
-            if allGoals.count == 0 {
-                if yesterdayFetch.count != 0 {
-                    for goal in yesterdayFetch {
-                        if goal.complete == false {
-                            allGoals.append(goal)
-                        }
-                    }
-                }
-            }
-        }
-        if allGoals.count == 1 {
-            todayGoal = allGoals[0]
-        }
-    }
 }
 
 
