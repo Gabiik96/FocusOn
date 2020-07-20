@@ -58,10 +58,10 @@ struct TodayGoalView: View {
 
 struct TodayEmptyGoalView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @ObservedObject var todayGoal: Goal
     
     let dataController = DataController()
     
+    @State private var todayGoal: Goal?
     @State private var title = ""
     
     var body: some View {
@@ -75,12 +75,15 @@ struct TodayEmptyGoalView: View {
                     TextField("Set your goal..", text: self.$title)
                         .font(.system(size: 25))
                     Button(action: {
-                        self.todayGoal.title = self.title
-                        self.dataController.updateGoal(
-                            goal: self.todayGoal,
-                            newTitle: self.todayGoal.title,
-                            moc: self.moc
-                        )
+                        self.todayGoal = self.dataController.createEmptyGoalWithEmptyTasks(moc: self.moc)
+                        if self.todayGoal != nil {
+                            self.todayGoal!.title = self.title
+                            self.dataController.updateGoal(
+                                goal: self.todayGoal!,
+                                newTitle: self.todayGoal!.title,
+                                moc: self.moc
+                            )
+                        }
                     })
                     {
                         Image(systemName: "plus.circle.fill")
@@ -112,17 +115,17 @@ struct TodayTaskView: View {
                 .frame(width: 25, height: 25)
                 .foregroundColor(Color.divColor)
             TextField("Define task", text: self.$task.title)
-            .onReceive(self.task.objectWillChange, perform: { self.dataController.saveMoc(moc: self.moc) })
+                .onReceive(self.task.objectWillChange, perform: { self.dataController.saveMoc(moc: self.moc) })
             if task.title == "" {
                 Button(action: {
                     self.btnPressed()
                 })
                 {
                     Image(systemName: "plus.circle.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
                 }.buttonStyle(AddButton())
-                .frame(width: 25.0, height: 25.0)
+                    .frame(width: 25.0, height: 25.0)
             } else {
                 Button(action: {
                     self.btnPressed()

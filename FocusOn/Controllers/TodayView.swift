@@ -42,7 +42,7 @@ struct TodayView: View {
                     TodayGoalView(todayGoal: yesterdayFetch.first!)
                         .environment(\.managedObjectContext, self.moc)
                 } else {
-                    TodayEmptyGoalView(todayGoal: dataController.createEmptyGoalWithEmptyTasks(moc: moc))
+                    TodayEmptyGoalView()
                         .environment(\.managedObjectContext, self.moc)
                 }
             }.navigationBarTitle(Text("FocusOn Today"))
