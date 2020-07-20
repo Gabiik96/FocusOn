@@ -11,23 +11,21 @@ import CoreData
 import SwiftUICharts
 
 struct ProgressView: View {
-    
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @FetchRequest( entity: Goal.entity(), sortDescriptors: [] ) var allGoals: FetchedResults<Goal>
     
+    let timePeriods = ["week", "month", "year"]
+    
+    
     var body: some View {
         NavigationView {
-            
-            ProgressMenuView()
-                .navigationBarTitle("FocusOn Progress")
+            List(timePeriods, id: \.self) { period in
+                VStack {
+                    NavigationLink(destination: ProgressDetailView(timePeriod: period)) {
+                        RectangleBtnView(title: period)
+                    }
+                }
+            }.navigationBarTitle("FocusOn Progress")
         }
-    }
-    
-}
-
-
-struct ProgressView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProgressView()
     }
 }

@@ -11,6 +11,7 @@
 		426E7247249AB0E100DC661E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7246249AB0E100DC661E /* DataController.swift */; };
 		426E7249249AB4FD00DC661E /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7248249AB4FD00DC661E /* TimeController.swift */; };
 		4272D03D24B1346200FD2D9F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 4272D03C24B1346200FD2D9F /* SwiftUICharts */; };
+		42756ABA24C663FE00F39BC4 /* GraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42756AB924C663FE00F39BC4 /* GraphData.swift */; };
 		42878A6924995EAB004AC780 /* Customs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42878A6824995EAB004AC780 /* Customs.swift */; };
 		429B29F224A6B03F0023E1EB /* HistoryGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F124A6B03F0023E1EB /* HistoryGoalView.swift */; };
 		429B29F524ABF8550023E1EB /* TodayGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F424ABF8550023E1EB /* TodayGoalView.swift */; };
@@ -33,6 +34,7 @@
 		4247131D24AFEA340058057F /* ProgressSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSummaryView.swift; sourceTree = "<group>"; };
 		426E7246249AB0E100DC661E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		426E7248249AB4FD00DC661E /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
+		42756AB924C663FE00F39BC4 /* GraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphData.swift; sourceTree = "<group>"; };
 		42878A6824995EAB004AC780 /* Customs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customs.swift; sourceTree = "<group>"; };
 		429B29F124A6B03F0023E1EB /* HistoryGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGoalView.swift; sourceTree = "<group>"; };
 		429B29F424ABF8550023E1EB /* TodayGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalView.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */,
 				426E7246249AB0E100DC661E /* DataController.swift */,
 				426E7248249AB4FD00DC661E /* TimeController.swift */,
+				42756AB924C663FE00F39BC4 /* GraphData.swift */,
 				42E9D477248987E000D66924 /* FocusOn.xcdatamodeld */,
 				42878A6A24995EB3004AC780 /* CustomViews */,
 			);
@@ -246,6 +249,7 @@
 				4247131E24AFEA340058057F /* ProgressSummaryView.swift in Sources */,
 				42E9D476248987E000D66924 /* SceneDelegate.swift in Sources */,
 				42878A6924995EAB004AC780 /* Customs.swift in Sources */,
+				42756ABA24C663FE00F39BC4 /* GraphData.swift in Sources */,
 				426E7249249AB4FD00DC661E /* TimeController.swift in Sources */,
 				42E9D48E2489891300D66924 /* HistoryView.swift in Sources */,
 				429B29F224A6B03F0023E1EB /* HistoryGoalView.swift in Sources */,
@@ -457,7 +461,7 @@
 			repositoryURL = "https://github.com/Gabiik96/ChartAPI.git";
 			requirement = {
 				kind = revision;
-				revision = adfb74529423b00a7b95a5d1b81ec3c732fe84f7;
+				revision = c51eaaa6352cce9fe5a2d54449d7bbc4de3c1ddf;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
