@@ -86,7 +86,7 @@ struct HistoryGoalPartView: View {
 }
 
 struct HistoryMonthView: View {
-    
+
     @State var monthWithGoals: monthGoals
     @State var completedGoalsCount = [Goal]()
     @State var allGoalsCount = 0
@@ -114,6 +114,7 @@ struct HistoryMonthView: View {
             }
         } .onAppear() { self.configure() }
     }
+    
     
     func configure() {
         if monthWithGoals.goals != nil {

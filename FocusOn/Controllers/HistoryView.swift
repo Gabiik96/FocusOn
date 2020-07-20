@@ -31,26 +31,19 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(goalsSeparatedByMonth) { monthWithGoals in
-                    if monthWithGoals.goals != nil {
-                        HistoryMonthView(monthWithGoals: monthWithGoals)
+                Group {
+                    if goalsSeparatedByMonth.count != 0 {
+                        ForEach(goalsSeparatedByMonth) { monthWithGoals in
+                            if monthWithGoals.goals != nil {
+                                HistoryMonthView(monthWithGoals: monthWithGoals)
+                            }
+                        }
+                    } else {
+                        Text("Currently, you do not have goals to show.")
                     }
-                }.navigationBarTitle(Text("FocusOn History"))
+                } .navigationBarTitle(Text("FocusOn History"))
             }
         }.onAppear() { self.configure() }
-    }
-    
-    func removeGoal(at offsets: IndexSet) {
-        for index in offsets {
-            let goal = allGoals[index]
-            moc.delete(goal)
-            do {
-                try moc.save()
-                print("Deleted Goal")
-            } catch {
-                print("Failed to save context. \(error)")
-            }
-        }
     }
     
     func configure() {
