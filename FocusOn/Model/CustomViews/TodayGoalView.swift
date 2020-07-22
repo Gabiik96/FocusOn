@@ -151,6 +151,7 @@ struct TodayTaskView: View {
     }
     
     func btnPressed() {
+        var countToThree = 0
         if self.task.complete == true && self.goal.complete == true {
             self.goal.complete.toggle()
             self.task.complete.toggle()
@@ -158,6 +159,10 @@ struct TodayTaskView: View {
             self.task.complete.toggle()
         }
         self.dataController.updateTask(task: self.task, newTitle: self.task.title, completed: self.task.complete, moc: self.moc)
+        for task in self.goal.tasks {
+            if (task as AnyObject).complete == true { countToThree += 1 }
+            if countToThree == 3 { self.goal.complete = true }
+        }
     }
 }
 
