@@ -45,14 +45,13 @@ struct HistoryGoalWithTasksView: View {
             
             ForEach(tasks) { task in
                 HStack {
-                    Text(task.title)
-                        .font(.system(size: 20))
-                        .fontWeight(.regular)
-                        .minimumScaleFactor(0.01)
-                        .frame(height: 30.0)
-                    Spacer()
-                    Button(action: { })
-                    {
+                    if task.title != "" {
+                        Text(task.title)
+                            .font(.system(size: 20))
+                            .fontWeight(.regular)
+                            .minimumScaleFactor(0.01)
+                            .frame(height: 30.0)
+                        Spacer()
                         Image(systemName: (task.complete ? "checkmark.circle.fill" : "multiply.circle"))
                             .resizable()
                             .frame(width: 25.0, height: 25.0)
@@ -86,7 +85,7 @@ struct HistoryGoalPartView: View {
 }
 
 struct HistoryMonthView: View {
-
+    
     @State var monthWithGoals: monthGoals
     @State var completedGoalsCount = [Goal]()
     @State var allGoalsCount = 0
