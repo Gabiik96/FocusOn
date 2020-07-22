@@ -13,6 +13,9 @@ struct TodayGoalView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @ObservedObject var todayGoal: Goal
     
+    // validation state for title of goal field
+    @State var goalTitleValid = FieldChecker()
+    
     let dataController = DataController()
     var numberImages = ["1.circle", "2.circle", "3.circle"]
     
@@ -24,7 +27,14 @@ struct TodayGoalView: View {
                 .frame(height: 45.0))
             {
                 HStack {
-                    TextField("Set your goal..", text: self.$todayGoal.title)
+                    TextFieldWithValidator(title: "Set your goal..", value: self.$todayGoal.title, checker: $goalTitleValid) { v in
+                        // validation closure where ‘v’ is the current value
+                        if( v.isEmpty ) {
+                            return "Goal cannot be empty"
+                        } else {
+                            return nil
+                        }
+                    }
                         .onReceive(self.todayGoal.objectWillChange, perform: { self.dataController.saveMoc(moc: self.moc) })
                         .font(.system(size: 25))
                     Button(action: {
