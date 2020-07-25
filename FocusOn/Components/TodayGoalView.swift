@@ -13,6 +13,9 @@ struct TodayGoalView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @ObservedObject var todayGoal: Goal
     
+    @Binding var taskCelebrate: Bool
+    @Binding var goalCelebrate: Bool
+    
     // validation state for title of goal field
     @State var goalTitleValid = FieldChecker()
     
@@ -35,16 +38,23 @@ struct TodayGoalView: View {
                             return nil
                         }
                     }
-                        .onReceive(self.todayGoal.objectWillChange, perform: { self.dataController.saveMoc(moc: self.moc) })
-                        .font(.system(size: 25))
+                    .onReceive(self.todayGoal.objectWillChange, perform: { self.dataController.saveMoc(moc: self.moc) })
+                    .font(.system(size: 25))
                     Button(action: {
                         self.todayGoal.complete = (self.todayGoal.complete ? false : true)
-                        for task in self.todayGoal.tasks.allObjects as! [Task] {
-                            if self.todayGoal.complete == true {
-                                
-                                task.complete = true
+                        
+                        if self.todayGoal.complete == true {
+                            withAnimation { self.goalCelebrate = true}
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                withAnimation { self.goalCelebrate = false }
                             }
                         }
+                        
+                        for task in self.todayGoal.tasks.allObjects as! [Task] {
+                            if self.todayGoal.complete == true { task.complete = true }
+                        }
+                        
                         self.dataController.updateGoal(
                             goal: self.todayGoal,
                             newTitle: self.todayGoal.title,
@@ -62,7 +72,7 @@ struct TodayGoalView: View {
             Section(header: Text("3 tasks to achieve your goal"))
             {
                 ForEach(0..<todayGoal.tasks.allObjects.count) { task in
-                    TodayTaskView(task: self.todayGoal.tasks.allObjects[task] as! Task, goal: self.todayGoal, image: self.numberImages[task])
+                    TodayTaskView(task: self.todayGoal.tasks.allObjects[task] as! Task, goal: self.todayGoal, celebrate: self.$taskCelebrate, image: self.numberImages[task])
                 }
             }
         }
@@ -117,6 +127,8 @@ struct TodayTaskView: View {
     @ObservedObject var task: Task
     @ObservedObject var goal: Goal
     
+    @Binding var celebrate: Bool
+    
     let dataController = DataController()
     fileprivate var image: String
     
@@ -158,6 +170,15 @@ struct TodayTaskView: View {
         if self.task.complete == true && self.goal.complete == true {
             self.goal.complete.toggle()
             self.task.complete.toggle()
+        } else if self.task.complete == false {
+            self.task.complete.toggle()
+            
+            withAnimation { self.celebrate = true }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation { self.celebrate = false }
+            }
+            
         } else {
             self.task.complete.toggle()
         }

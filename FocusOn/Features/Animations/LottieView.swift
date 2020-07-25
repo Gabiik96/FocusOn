@@ -1,5 +1,5 @@
 //
-//  LottieView.swift
+//  LotieView.swift
 //  FocusOn
 //
 //  Created by Gabriel Balta on 25/07/2020.

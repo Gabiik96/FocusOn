@@ -30,22 +30,43 @@ struct TodayView: View {
                                 )! as NSDate)
     ) var yesterdayFetch: FetchedResults<Goal>
     
+    @State var taskCelebrate = false
+    @State var goalCelebrate = false
+    
     private let dataController = DataController()
     
     var body: some View {
         NavigationView {
-            Group {
-                if todayFetch.count != 0 {
-                    TodayGoalView(todayGoal: todayFetch.first!)
-                        .environment(\.managedObjectContext, self.moc)
-                } else if yesterdayFetch.count != 0 {
-                    TodayGoalView(todayGoal: yesterdayFetch.first!)
-                        .environment(\.managedObjectContext, self.moc)
-                } else {
-                    TodayEmptyGoalView()
-                        .environment(\.managedObjectContext, self.moc)
+            ZStack {
+                Group {
+                    if todayFetch.count != 0 {
+                        TodayGoalView(
+                            todayGoal: todayFetch.first!,
+                            taskCelebrate: self.$taskCelebrate,
+                            goalCelebrate: self.$goalCelebrate
+                        )
+                            .environment(\.managedObjectContext, self.moc)
+                    } else if yesterdayFetch.count != 0 {
+                        TodayGoalView(
+                            todayGoal: yesterdayFetch.first!,
+                            taskCelebrate: self.$taskCelebrate,
+                            goalCelebrate: self.$goalCelebrate
+                        )
+                            .environment(\.managedObjectContext, self.moc)
+                    } else {
+                        TodayEmptyGoalView()
+                            .environment(\.managedObjectContext, self.moc)
+                    }
+                }.navigationBarTitle(Text("FocusOn Today"))
+                
+                if goalCelebrate == true {
+                    GoalCelebrationView()
                 }
-            }.navigationBarTitle(Text("FocusOn Today"))
+                if taskCelebrate == true {
+                    TaskCelebrationView()
+                        .transition(.scale)
+                }
+            }
         }
     }
     
