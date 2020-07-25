@@ -40,7 +40,10 @@ struct TodayGoalView: View {
                     Button(action: {
                         self.todayGoal.complete = (self.todayGoal.complete ? false : true)
                         for task in self.todayGoal.tasks.allObjects as! [Task] {
-                            if self.todayGoal.complete == true { task.complete = true }
+                            if self.todayGoal.complete == true {
+                                
+                                task.complete = true
+                            }
                         }
                         self.dataController.updateGoal(
                             goal: self.todayGoal,
