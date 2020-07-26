@@ -19,12 +19,12 @@ struct monthGoals: Identifiable, Equatable {
 
 struct HistoryGoalWithTasksView: View {
     
-    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
+    @ObservedObject var goal: Goal
     
     let timeController = TimeController()
     let dateFormatter = DateFormatter()
     
-    @State var goal: Goal
+    var imagesArray = ["1.circle", "2.circle", "3.circle"]
     var tasks: [Task] {
         goal.tasks.allObjects as! [Task]
     }
@@ -43,20 +43,25 @@ struct HistoryGoalWithTasksView: View {
             
             HistoryGoalPartView(goal: goal)
             
-            ForEach(tasks) { task in
+            ForEach(tasks.enumeratedArray(), id:\.element) { index,task in
                 HStack {
                     if task.title != "" {
-                        Text(task.title)
-                            .font(.system(size: 20))
-                            .fontWeight(.regular)
-                            .minimumScaleFactor(0.01)
-                            .frame(height: 30.0)
-                        Spacer()
-                        Image(systemName: (task.complete ? "checkmark.circle.fill" : "multiply.circle"))
-                            .resizable()
-                            .frame(width: 25.0, height: 25.0)
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(task.complete ? .green : .red)
+                            Image(systemName: self.imagesArray[index])
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(Color.divColor)
+                            Text(task.title)
+                                .font(.system(size: 20))
+                                .fontWeight(.regular)
+                                .minimumScaleFactor(0.01)
+                                .frame(height: 30.0)
+                            Spacer()
+                            Image(systemName: (task.complete ? "checkmark.circle.fill" : "multiply.circle"))
+                                .resizable()
+                                .frame(width: 25.0, height: 25.0)
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(task.complete ? .green : .red)
                     }
                 }
             }
@@ -66,7 +71,7 @@ struct HistoryGoalWithTasksView: View {
 
 struct HistoryGoalPartView: View {
     
-    @State var goal: Goal
+    @ObservedObject var goal: Goal
     
     var body: some View {
         HStack() {
