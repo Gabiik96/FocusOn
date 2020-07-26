@@ -10,7 +10,17 @@ import SwiftUI
 
 //MARK: - Button
 
-struct AddButton: ButtonStyle {
+struct AddGoal: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.green)
+            .imageScale(.large)
+            .scaleEffect(configuration.isPressed ? 1.3 : 1.0)
+            .frame(width: 30.0, height: 60.0)
+    }
+}
+
+struct AddTask: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .foregroundColor(.green)

@@ -11,19 +11,29 @@ import SwiftUI
 struct GoalCelebrationView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
-//    @State var textIsHidden: Bool
+    @State var textIsHidden: Bool
     
     var body: some View {
         ZStack {
-            LottieView(fileName: self.colorScheme == .dark ? "ConfettiDark" : "ConfettiLight")
-                .frame(minWidth: 0,
-                       maxWidth: .infinity,
-                       minHeight: 0,
-                       maxHeight: .infinity)
-//            if textIsHidden == false {
-                withAnimation { Text("GOAL COMPLETED")}
+            Group {
+                LottieView(fileName: self.colorScheme == .dark ? "LanternDark" : "LanternLight")
+                    .padding(.bottom, 50)
+                LottieView(fileName: self.colorScheme == .dark ? "ConfettiDark" : "ConfettiLight")
+                    .position(x: (UIScreen.screenWidth / 2), y: (UIScreen.screenHeight / 2))
                 
-//            }
+            }.onAppear() {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    withAnimation { self.textIsHidden = false }
+                }
+            }
+            if textIsHidden == false {
+                withAnimation {
+                    Text("GOAL COMPLETED")
+                        .position(x: (UIScreen.screenWidth / 2), y: (UIScreen.screenHeight / 2.1))
+                        .font(.system(size: 30))
+                }
+                
+            }
         }
     }
 }

@@ -60,10 +60,12 @@ struct TodayView: View {
                 }.navigationBarTitle(Text("FocusOn Today"))
                 
                 if goalCelebrate == true {
-                    GoalCelebrationView()
+                    GoalCelebrationView(textIsHidden: true)
+                        
                 }
                 if taskCelebrate == true {
                     TaskCelebrationView()
+                        .position(x: (UIScreen.screenWidth / 2), y: (UIScreen.screenHeight / 2))
                         .transition(.scale)
                 }
             }

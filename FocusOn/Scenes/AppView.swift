@@ -37,9 +37,6 @@ struct AppView: View {
             
         }
         .accentColor(.textColor)
-//        .onAppear() {
-//            DemoDataSet().populateDemoData()
-//        }
     }
 }
 

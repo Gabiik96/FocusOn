@@ -14,9 +14,9 @@ struct TaskCelebrationView: View {
     var body: some View {
         VStack {
         LottieView(fileName: self.colorScheme == .dark ? "PartyEmojiDark" : "PartyEmojiLight")
-            .frame(width: 100.0, height: 110.0)
+            .frame(width: 60.0, height: 70.0)
         Text("TASK COMPLETED")
-            .font(.system(size: 20, weight: .light))
+            .font(.system(size: 15, weight: .light))
         }
     }
 }

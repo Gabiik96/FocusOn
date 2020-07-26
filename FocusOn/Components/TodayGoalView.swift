@@ -20,7 +20,7 @@ struct TodayGoalView: View {
     @State var goalTitleValid = FieldChecker()
     
     let dataController = DataController()
-    var numberImages = ["1.circle", "2.circle", "3.circle"]
+    var imagesArray = ["1.circle", "2.circle", "3.circle"]
     
     var body: some View {
         List {
@@ -72,7 +72,13 @@ struct TodayGoalView: View {
             Section(header: Text("3 tasks to achieve your goal"))
             {
                 ForEach(0..<todayGoal.tasks.allObjects.count) { task in
-                    TodayTaskView(task: self.todayGoal.tasks.allObjects[task] as! Task, goal: self.todayGoal, celebrate: self.$taskCelebrate, image: self.numberImages[task])
+                    TodayTaskView(
+                        task: self.todayGoal.tasks.allObjects[task] as! Task,
+                        goal: self.todayGoal,
+                        taskCelebrate: self.$taskCelebrate,
+                        goalCelebrate: self.$goalCelebrate,
+                        image: self.imagesArray[task]
+                    )
                 }
             }
         }
@@ -110,7 +116,9 @@ struct TodayEmptyGoalView: View {
                     })
                     {
                         Image(systemName: "plus.circle.fill")
-                    }.buttonStyle(AddButton())
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    }.buttonStyle(AddGoal())
                 }
             }
             Section(header: Text("3 tasks to achieve your goal"))
@@ -127,7 +135,8 @@ struct TodayTaskView: View {
     @ObservedObject var task: Task
     @ObservedObject var goal: Goal
     
-    @Binding var celebrate: Bool
+    @Binding var taskCelebrate: Bool
+    @Binding var goalCelebrate: Bool
     
     let dataController = DataController()
     fileprivate var image: String
@@ -149,7 +158,7 @@ struct TodayTaskView: View {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                }.buttonStyle(AddButton())
+                }.buttonStyle(AddTask())
                     .frame(width: 25.0, height: 25.0)
             } else {
                 Button(action: {
@@ -166,26 +175,41 @@ struct TodayTaskView: View {
     }
     
     func btnPressed() {
+        
         var countToThree = 0
+        
         if self.task.complete == true && self.goal.complete == true {
             self.goal.complete.toggle()
             self.task.complete.toggle()
         } else if self.task.complete == false {
             self.task.complete.toggle()
             
-            withAnimation { self.celebrate = true }
+            withAnimation { self.taskCelebrate = true }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                withAnimation { self.celebrate = false }
+                withAnimation { self.taskCelebrate = false }
             }
             
         } else {
             self.task.complete.toggle()
         }
+        
         self.dataController.updateTask(task: self.task, newTitle: self.task.title, completed: self.task.complete, moc: self.moc)
+        
         for task in self.goal.tasks {
             if (task as AnyObject).complete == true { countToThree += 1 }
-            if countToThree == 3 { self.goal.complete = true }
+            if countToThree == 3 {
+                self.goal.complete = true
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    
+                    withAnimation { self.goalCelebrate = true }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation { self.goalCelebrate = false }
+                    }
+                }
+            }
         }
     }
 }
