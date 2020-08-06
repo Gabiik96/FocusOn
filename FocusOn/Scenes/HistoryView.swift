@@ -33,7 +33,7 @@ struct HistoryView: View {
             List {
                 Group {
                     if goalsSeparatedByMonth.count != 0 {
-                        ForEach(goalsSeparatedByMonth) { monthWithGoals in
+                        ForEach(goalsSeparatedByMonth.reversed()) { monthWithGoals in
                             if monthWithGoals.goals != nil {
                                 HistoryMonthView(monthWithGoals: monthWithGoals)
                             }
@@ -56,7 +56,7 @@ struct HistoryView: View {
         }
         
         while self.goals.count != 0 {
-            
+
             for month in self.allMonths {
                 var object = monthGoals(id: UUID(), month: month, year: self.currentYear)
                 object.goals = allGoals.filter ({ $0.month == "\(month) \(self.currentYear)" })
@@ -65,8 +65,7 @@ struct HistoryView: View {
                 
                 if object.goals?.count != 0 {
                     for goal in object.goals! {
-                        let index = goals.firstIndex(where: { $0 === goal })
-                        self.goals.remove(at: index!)
+                        self.goals.removeAll(where: { $0.title == goal.title })
                     }
                 }
             }
