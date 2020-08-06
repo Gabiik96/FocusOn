@@ -14,6 +14,8 @@ struct AppView: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @FetchRequest( entity: Goal.entity(), sortDescriptors: [] ) var allGoals: FetchedResults<Goal>
     
+    let demo = DemoData(moc: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext )
+    
     var body: some View {
         TabView {
             ProgressView()
@@ -36,6 +38,7 @@ struct AppView: View {
             }
             
         }
+//        .onAppear() { self.demo.populateDemoData()}
         .accentColor(.textColor)
     }
 }
