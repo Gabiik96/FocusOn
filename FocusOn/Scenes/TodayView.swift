@@ -30,6 +30,9 @@ struct TodayView: View {
                                 )! as NSDate)
     ) var yesterdayFetch: FetchedResults<Goal>
     
+    @State private var showingAlert = false
+    @State private var showYesterdayGoal = false
+    
     @State var taskCelebrate = false
     @State var goalCelebrate = false
     
@@ -46,7 +49,7 @@ struct TodayView: View {
                             goalCelebrate: self.$goalCelebrate
                         )
                             .environment(\.managedObjectContext, self.moc)
-                    } else if yesterdayFetch.count != 0 && yesterdayFetch.first!.complete == false {
+                    } else if yesterdayFetch.count != 0 && showYesterdayGoal == true {
                         TodayGoalView(
                             todayGoal: yesterdayFetch.first!,
                             taskCelebrate: self.$taskCelebrate,
@@ -67,6 +70,16 @@ struct TodayView: View {
                     TaskCelebrationView()
                         .position(x: (UIScreen.screenWidth / 2), y: (UIScreen.screenHeight / 2))
                         .transition(.scale)
+                }
+            }.alert(isPresented: $showingAlert) {
+                Alert(title: Text("Yesterday goal is not completed"),
+                      message: Text("Do you wish to continue with it ?"),
+                      primaryButton: .default(Text("Yes"), action: { self.showYesterdayGoal = true }),
+                      secondaryButton: .default(Text("No"), action: { self.showYesterdayGoal = false }))
+            }
+            .onAppear() {
+                if self.yesterdayFetch.count != 0 && self.yesterdayFetch.first?.complete == false {
+                    self.showingAlert = true
                 }
             }
         }
