@@ -46,7 +46,7 @@ struct TodayView: View {
                             goalCelebrate: self.$goalCelebrate
                         )
                             .environment(\.managedObjectContext, self.moc)
-                    } else if yesterdayFetch.count != 0 {
+                    } else if yesterdayFetch.count != 0 && yesterdayFetch.first!.complete == false {
                         TodayGoalView(
                             todayGoal: yesterdayFetch.first!,
                             taskCelebrate: self.$taskCelebrate,
