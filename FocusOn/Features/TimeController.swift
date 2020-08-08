@@ -60,6 +60,14 @@ struct TimeController {
         return stringDate
     }
     
+    func formattedDayToStringForChart(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM"
+        let stringDate = dateFormatter.string(from: date)
+        
+        return stringDate
+    }
+    
     func formattedMonthToString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LLLL yyyy"
