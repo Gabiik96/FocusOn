@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4247131E24AFEA340058057F /* ProgressSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4247131D24AFEA340058057F /* ProgressSummaryView.swift */; };
+		4247131E24AFEA340058057F /* ProgressSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4247131D24AFEA340058057F /* ProgressSubViews.swift */; };
 		426E7247249AB0E100DC661E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7246249AB0E100DC661E /* DataController.swift */; };
 		426E7249249AB4FD00DC661E /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7248249AB4FD00DC661E /* TimeController.swift */; };
 		4272D03D24B1346200FD2D9F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 4272D03C24B1346200FD2D9F /* SwiftUICharts */; };
@@ -24,9 +24,9 @@
 		42756AD924CE10DC00F39BC4 /* LanternDark.json in Resources */ = {isa = PBXBuildFile; fileRef = 42756AD724CE10DC00F39BC4 /* LanternDark.json */; };
 		42756ADA24CE10DC00F39BC4 /* LanternLight.json in Resources */ = {isa = PBXBuildFile; fileRef = 42756AD824CE10DC00F39BC4 /* LanternLight.json */; };
 		42756ADC24CE1D5A00F39BC4 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42756ADB24CE1D5A00F39BC4 /* CollectionExtension.swift */; };
-		42878A6924995EAB004AC780 /* Customs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42878A6824995EAB004AC780 /* Customs.swift */; };
-		429B29F224A6B03F0023E1EB /* HistoryGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F124A6B03F0023E1EB /* HistoryGoalView.swift */; };
-		429B29F524ABF8550023E1EB /* TodayGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F424ABF8550023E1EB /* TodayGoalView.swift */; };
+		42878A6924995EAB004AC780 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42878A6824995EAB004AC780 /* CustomViews.swift */; };
+		429B29F224A6B03F0023E1EB /* HistorySubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F124A6B03F0023E1EB /* HistorySubViews.swift */; };
+		429B29F524ABF8550023E1EB /* TodaySubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B29F424ABF8550023E1EB /* TodaySubViews.swift */; };
 		429F316724CE59C800808D29 /* DemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429F316624CE59C800808D29 /* DemoData.swift */; };
 		429FBBD3249FD2F80075FDA3 /* TaskCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */; };
 		429FBBD5249FD2F80075FDA3 /* GoalCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */; };
@@ -44,7 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4247131D24AFEA340058057F /* ProgressSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSummaryView.swift; sourceTree = "<group>"; };
+		4247131D24AFEA340058057F /* ProgressSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSubViews.swift; sourceTree = "<group>"; };
 		426E7246249AB0E100DC661E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		426E7248249AB4FD00DC661E /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
 		42756ABB24C8FF4800F39BC4 /* TextFieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidator.swift; sourceTree = "<group>"; };
@@ -59,9 +59,9 @@
 		42756AD724CE10DC00F39BC4 /* LanternDark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LanternDark.json; sourceTree = "<group>"; };
 		42756AD824CE10DC00F39BC4 /* LanternLight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LanternLight.json; sourceTree = "<group>"; };
 		42756ADB24CE1D5A00F39BC4 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
-		42878A6824995EAB004AC780 /* Customs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customs.swift; sourceTree = "<group>"; };
-		429B29F124A6B03F0023E1EB /* HistoryGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGoalView.swift; sourceTree = "<group>"; };
-		429B29F424ABF8550023E1EB /* TodayGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalView.swift; sourceTree = "<group>"; };
+		42878A6824995EAB004AC780 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
+		429B29F124A6B03F0023E1EB /* HistorySubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySubViews.swift; sourceTree = "<group>"; };
+		429B29F424ABF8550023E1EB /* TodaySubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySubViews.swift; sourceTree = "<group>"; };
 		429F316624CE59C800808D29 /* DemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoData.swift; sourceTree = "<group>"; };
 		429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCoreDataProperties.swift; sourceTree = "<group>"; };
 		429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCoreDataProperties.swift; sourceTree = "<group>"; };
@@ -146,10 +146,10 @@
 		42878A6A24995EB3004AC780 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				42878A6824995EAB004AC780 /* Customs.swift */,
-				429B29F124A6B03F0023E1EB /* HistoryGoalView.swift */,
-				429B29F424ABF8550023E1EB /* TodayGoalView.swift */,
-				4247131D24AFEA340058057F /* ProgressSummaryView.swift */,
+				42878A6824995EAB004AC780 /* CustomViews.swift */,
+				429B29F124A6B03F0023E1EB /* HistorySubViews.swift */,
+				429B29F424ABF8550023E1EB /* TodaySubViews.swift */,
+				4247131D24AFEA340058057F /* ProgressSubViews.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -325,18 +325,18 @@
 				429F316724CE59C800808D29 /* DemoData.swift in Sources */,
 				42E9D474248987E000D66924 /* AppDelegate.swift in Sources */,
 				42A44FD1249187350039968B /* ColorExtensions.swift in Sources */,
-				4247131E24AFEA340058057F /* ProgressSummaryView.swift in Sources */,
+				4247131E24AFEA340058057F /* ProgressSubViews.swift in Sources */,
 				42E9D476248987E000D66924 /* SceneDelegate.swift in Sources */,
 				42756ABC24C8FF4800F39BC4 /* TextFieldValidator.swift in Sources */,
-				42878A6924995EAB004AC780 /* Customs.swift in Sources */,
+				42878A6924995EAB004AC780 /* CustomViews.swift in Sources */,
 				426E7249249AB4FD00DC661E /* TimeController.swift in Sources */,
 				42E9D48E2489891300D66924 /* HistoryView.swift in Sources */,
 				42756AD424CCCBC100F39BC4 /* GoalCelebrationView.swift in Sources */,
 				42756ADC24CE1D5A00F39BC4 /* CollectionExtension.swift in Sources */,
-				429B29F224A6B03F0023E1EB /* HistoryGoalView.swift in Sources */,
+				429B29F224A6B03F0023E1EB /* HistorySubViews.swift in Sources */,
 				42E9D49224898E2300D66924 /* TodayView.swift in Sources */,
 				42756AD624CE0DC100F39BC4 /* UIScreenExtension.swift in Sources */,
-				429B29F524ABF8550023E1EB /* TodayGoalView.swift in Sources */,
+				429B29F524ABF8550023E1EB /* TodaySubViews.swift in Sources */,
 				426E7247249AB0E100DC661E /* DataController.swift in Sources */,
 				42E9D48C248988F800D66924 /* AppView.swift in Sources */,
 				42E9D479248987E000D66924 /* FocusOn.xcdatamodeld in Sources */,

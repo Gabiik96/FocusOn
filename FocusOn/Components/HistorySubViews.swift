@@ -25,9 +25,7 @@ struct HistoryGoalWithTasksView: View {
     let dateFormatter = DateFormatter()
     
     var imagesArray = ["1.circle", "2.circle", "3.circle"]
-    var tasks: [Task] {
-        goal.tasks.allObjects as! [Task]
-    }
+    var tasks: [Task] { goal.tasks.allObjects as! [Task] }
     
     
     
