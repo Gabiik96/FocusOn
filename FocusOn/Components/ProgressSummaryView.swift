@@ -8,109 +8,79 @@
 
 import SwiftUI
 import CoreData
-import SwiftUICharts
 
-struct RectangleBtnView: View {
-    
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
-    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @FetchRequest( entity: Goal.entity(), sortDescriptors: [] ) var allGoals: FetchedResults<Goal>
-    
-    let title: String
-    
-    var body: some View {
-        
-        ZStack {
-            Rectangle()
-                .fill(self.colorScheme == .dark ? Color.black : Color.white)
-                .frame(width: (UIScreen.screenWidth - 40), height: 180)
-                .cornerRadius(20)
-                .shadow(color: Color.gray, radius: 8)
-            HStack {
-                Text("Last \(title)")
-                    .font(.largeTitle)
-                    .offset(x: 15)
-                Spacer()
-                PieChartView(data: [12,3], title: "", form: ChartForm.medium)
-                    .offset(x: -15)
-            }
-        }
-            
-        .padding(.bottom, 20)
-    }
+
+struct CountData: Identifiable, Equatable {
+    var id = UUID()
+    var date: String = ""
+    var value: CGFloat = 0
+    var goal: Goal
 }
 
-struct ProgressDetailView: View {
+struct BarView: View {
     
-    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @FetchRequest( entity: Goal.entity(), sortDescriptors: [] ) var goalsForPeriod: FetchedResults<Goal>
+    @State private var showValue = false
     
-    let timePeriod: String
-    
-    var body: some View {
-        VStack {
-            HStack {
-                taskGoalBtn()
-            }
-            LineView(data: [8,23,54,32,12,37,7,23,43], title: "Last \(timePeriod)", legend: "Full screen")
-        }
-    }
-}
-
-struct taskGoalBtn: View {
-    
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
-    
-    @State var goalIsPressed = false
-    @State var taskIsPressed = false
+    var value: CGFloat = 10
+    var date: String = ""
+    var goal: Goal
     
     var body: some View {
         HStack {
-        Button(action: {
-            self.goalIsPressed = (self.goalIsPressed ? false : true)
-            
-        }){
-            if self.goalIsPressed == false {
-                DetailedBtn(title: "Goals", pressed: false)
-            } else {
-                DetailedBtn(title: "Goals", pressed: true)
-        }
+            VStack {
+                ZStack(alignment:.bottom) {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.backgColor)
+                        .frame(width: (showValue ? 60 : 30), height: 160)
+                    if value > 80 {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(LinearGradient(gradient: Gradient(colors: [.darkGreen, .green ]), startPoint: .bottom, endPoint: .top))
+                            .frame(width: (showValue ? 60 : 30), height: value)
+                    } else if value == 80 {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(LinearGradient(gradient: Gradient(colors: [.darkOrange, .orange]), startPoint: .bottom, endPoint: .top))
+                            .frame(width: (showValue ? 60 : 30), height: value)
+                    } else if value < 80 && value > 30 {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(LinearGradient(gradient: Gradient(colors: [.darkRed, .red]), startPoint: .bottom, endPoint: .top))
+                            .frame(width: (showValue ? 60 : 30), height: value)
+                    }  else if value < 30 {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.textColor)
+                            .frame(width: (showValue ? 60 : 30), height: 10)
+                    }
+                }.onTapGesture { self.showValue.toggle() }
+                Text(date)
+                    .fontWeight(.light)
+                    .font(.system(size: 15))
             }
-        
-        Spacer()
-            .frame(width: 20)
-            
-        Button(action: {
-            self.taskIsPressed = (self.taskIsPressed ? false : true)
-            
-        }){
-            if self.taskIsPressed == false {
-                DetailedBtn(title: "Tasks", pressed: false)
-            } else {
-                DetailedBtn(title: "Tasks", pressed: true)
-            }
-        }
-        
-        }
-    }
-    
-    struct DetailedBtn: View {
-        @Environment(\.colorScheme) var colorScheme: ColorScheme
-        
-        let title: String
-        let pressed: Bool
-        
-        var body: some View {
-            ZStack {
-                Rectangle()
-                    .fill(self.pressed == false ? (self.colorScheme == .dark ? Color.white : Color.black) : (self.colorScheme == .dark ? Color.black : Color.white))
-                    .frame(width: 60, height: 30)
-                    .cornerRadius(3)
-                    .shadow(color: Color.gray, radius: 3)
-                Text(self.title)
-                    .foregroundColor(self.pressed == true ? (self.colorScheme == .dark ? Color.white : Color.black) : (self.colorScheme == .dark ? Color.black : Color.white))
+            if showValue == true {
+                VStack(alignment: .leading){
+                    BarObjectDetails(object: goal, bold: true)
+                    ForEach(0..<goal.tasks.allObjects.count) { task in
+                        BarObjectDetails(object: self.goal.tasks.allObjects[task] as! Task)
+                    }
+                }
             }
         }
     }
+}
+
+struct BarObjectDetails: View {
     
+    let object: AnyObject
+    var bold: Bool = false
+    
+    var body: some View {
+        HStack {
+            if bold == true {
+                Text(object.title)
+                    .bold()
+            } else {
+                Text(object.title)
+            }
+            Image(systemName: (object.complete ? "checkmark.circle.fill" : "multiply.circle"))
+                .foregroundColor(object.complete ? .green : .red)
+        }
+    }
 }

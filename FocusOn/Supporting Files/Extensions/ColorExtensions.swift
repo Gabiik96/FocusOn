@@ -24,6 +24,7 @@ extension Color {
     static let tabColor = Color("tabColor")
     static let divColor = Color("divColor")
     static let textColor = Color("textColor")
-    static let iconColor = Color("iconColor")
-    static let headerColor = Color("headerColor")
+    static let darkOrange = Color("darkOrange")
+    static let darkGreen = Color("darkGreen")
+    static let darkRed = Color("darkRed")
 }

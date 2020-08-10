@@ -11,7 +11,6 @@
 		426E7247249AB0E100DC661E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7246249AB0E100DC661E /* DataController.swift */; };
 		426E7249249AB4FD00DC661E /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7248249AB4FD00DC661E /* TimeController.swift */; };
 		4272D03D24B1346200FD2D9F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 4272D03C24B1346200FD2D9F /* SwiftUICharts */; };
-		42756ABA24C663FE00F39BC4 /* GraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42756AB924C663FE00F39BC4 /* GraphData.swift */; };
 		42756ABC24C8FF4800F39BC4 /* TextFieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42756ABB24C8FF4800F39BC4 /* TextFieldValidator.swift */; };
 		42756ABF24CCA80C00F39BC4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 42756ABE24CCA80C00F39BC4 /* Lottie */; };
 		42756AC424CCAFAC00F39BC4 /* PartyEmojiLight.json in Resources */ = {isa = PBXBuildFile; fileRef = 42756AC324CCAFAC00F39BC4 /* PartyEmojiLight.json */; };
@@ -48,7 +47,6 @@
 		4247131D24AFEA340058057F /* ProgressSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSummaryView.swift; sourceTree = "<group>"; };
 		426E7246249AB0E100DC661E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		426E7248249AB4FD00DC661E /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
-		42756AB924C663FE00F39BC4 /* GraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphData.swift; sourceTree = "<group>"; };
 		42756ABB24C8FF4800F39BC4 /* TextFieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidator.swift; sourceTree = "<group>"; };
 		42756AC324CCAFAC00F39BC4 /* PartyEmojiLight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PartyEmojiLight.json; sourceTree = "<group>"; };
 		42756AC524CCB0E500F39BC4 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				426E7246249AB0E100DC661E /* DataController.swift */,
 				426E7248249AB4FD00DC661E /* TimeController.swift */,
 				42756ABB24C8FF4800F39BC4 /* TextFieldValidator.swift */,
-				42756AB924C663FE00F39BC4 /* GraphData.swift */,
 				42756ADD24CE269F00F39BC4 /* CoreData */,
 				42756AC224CCAD4D00F39BC4 /* Animations */,
 			);
@@ -332,7 +329,6 @@
 				42E9D476248987E000D66924 /* SceneDelegate.swift in Sources */,
 				42756ABC24C8FF4800F39BC4 /* TextFieldValidator.swift in Sources */,
 				42878A6924995EAB004AC780 /* Customs.swift in Sources */,
-				42756ABA24C663FE00F39BC4 /* GraphData.swift in Sources */,
 				426E7249249AB4FD00DC661E /* TimeController.swift in Sources */,
 				42E9D48E2489891300D66924 /* HistoryView.swift in Sources */,
 				42756AD424CCCBC100F39BC4 /* GoalCelebrationView.swift in Sources */,
