@@ -84,4 +84,12 @@ struct TimeController {
         return nameOfMonth
     }
     
+    func notificationDate() -> DateComponents {
+        var dateComponents = DateComponents()
+        dateComponents.hour = 7
+        dateComponents.minute = 59
+        
+        return dateComponents
+    }
+    
 }
