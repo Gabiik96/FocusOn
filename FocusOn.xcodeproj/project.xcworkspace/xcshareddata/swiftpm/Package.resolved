@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "SwiftUICharts",
-        "repositoryURL": "https://github.com/Gabiik96/ChartAPI.git",
-        "state": {
-          "branch": null,
-          "revision": "c51eaaa6352cce9fe5a2d54449d7bbc4de3c1ddf",
-          "version": null
-        }
-      },
-      {
         "package": "Lottie",
         "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
         "state": {
