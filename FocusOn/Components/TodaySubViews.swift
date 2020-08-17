@@ -15,6 +15,7 @@ struct TodayGoalView: View {
     
     @Binding var taskCelebrate: Bool
     @Binding var goalCelebrate: Bool
+    @Binding var taskUnchecked: Bool
     
     // validation state for title of goal field
     @State var goalTitleValid = FieldChecker()
@@ -77,6 +78,7 @@ struct TodayGoalView: View {
                         goal: self.todayGoal,
                         taskCelebrate: self.$taskCelebrate,
                         goalCelebrate: self.$goalCelebrate,
+                        taskUnchecked: self.$taskUnchecked,
                         image: self.imagesArray[task]
                     )
                 }
@@ -116,8 +118,8 @@ struct TodayEmptyGoalView: View {
                     })
                     {
                         Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
                     }.buttonStyle(AddGoal())
                 }
             }
@@ -137,6 +139,7 @@ struct TodayTaskView: View {
     
     @Binding var taskCelebrate: Bool
     @Binding var goalCelebrate: Bool
+    @Binding var taskUnchecked: Bool
     
     let dataController = DataController()
     fileprivate var image: String
@@ -181,17 +184,16 @@ struct TodayTaskView: View {
         if self.task.complete == true && self.goal.complete == true {
             self.goal.complete.toggle()
             self.task.complete.toggle()
+            
+            dispatchAnimation(taskCompleted: false)
         } else if self.task.complete == false {
             self.task.complete.toggle()
             
-            withAnimation { self.taskCelebrate = true }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                withAnimation { self.taskCelebrate = false }
-            }
-            
+            dispatchAnimation(taskCompleted: true)
         } else {
             self.task.complete.toggle()
+            
+            dispatchAnimation(taskCompleted: false)
         }
         
         self.dataController.updateTask(task: self.task, newTitle: self.task.title, completed: self.task.complete, moc: self.moc)
@@ -209,6 +211,20 @@ struct TodayTaskView: View {
                         withAnimation { self.goalCelebrate = false }
                     }
                 }
+            }
+        }
+    }
+    func dispatchAnimation(taskCompleted: Bool) {
+        
+        if taskCompleted == false {
+            withAnimation { self.taskUnchecked = true }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation { self.taskUnchecked = false }
+            }
+        } else {
+            withAnimation { self.taskCelebrate = true }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation { self.taskCelebrate = false }
             }
         }
     }

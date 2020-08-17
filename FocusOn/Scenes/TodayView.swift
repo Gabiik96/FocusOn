@@ -35,6 +35,7 @@ struct TodayView: View {
     
     @State var taskCelebrate = false
     @State var goalCelebrate = false
+    @State var taskUnchecked = false
     
     private let dataController = DataController()
     
@@ -46,14 +47,16 @@ struct TodayView: View {
                         TodayGoalView(
                             todayGoal: todayFetch.first!,
                             taskCelebrate: self.$taskCelebrate,
-                            goalCelebrate: self.$goalCelebrate
+                            goalCelebrate: self.$goalCelebrate,
+                            taskUnchecked: self.$taskUnchecked
                         )
                             .environment(\.managedObjectContext, self.moc)
                     } else if yesterdayFetch.count != 0 && showYesterdayGoal == true {
                         TodayGoalView(
                             todayGoal: yesterdayFetch.first!,
                             taskCelebrate: self.$taskCelebrate,
-                            goalCelebrate: self.$goalCelebrate
+                            goalCelebrate: self.$goalCelebrate,
+                            taskUnchecked: self.$taskUnchecked
                         )
                             .environment(\.managedObjectContext, self.moc)
                     } else {
@@ -64,10 +67,13 @@ struct TodayView: View {
                 
                 if goalCelebrate == true {
                     GoalCelebrationView(textIsHidden: true)
-                        
-                }
-                if taskCelebrate == true {
+                    
+                } else if taskCelebrate == true {
                     TaskCelebrationView()
+                        .position(x: (UIScreen.screenWidth / 2), y: (UIScreen.screenHeight / 2))
+                        .transition(.scale)
+                } else if taskUnchecked == true {
+                    TaskSadView()
                         .position(x: (UIScreen.screenWidth / 2), y: (UIScreen.screenHeight / 2))
                         .transition(.scale)
                 }

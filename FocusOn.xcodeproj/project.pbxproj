@@ -10,7 +10,6 @@
 		4247131E24AFEA340058057F /* ProgressSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4247131D24AFEA340058057F /* ProgressSubViews.swift */; };
 		426E7247249AB0E100DC661E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7246249AB0E100DC661E /* DataController.swift */; };
 		426E7249249AB4FD00DC661E /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426E7248249AB4FD00DC661E /* TimeController.swift */; };
-		4272D03D24B1346200FD2D9F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 4272D03C24B1346200FD2D9F /* SwiftUICharts */; };
 		42756ABC24C8FF4800F39BC4 /* TextFieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42756ABB24C8FF4800F39BC4 /* TextFieldValidator.swift */; };
 		42756ABF24CCA80C00F39BC4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 42756ABE24CCA80C00F39BC4 /* Lottie */; };
 		42756AC424CCAFAC00F39BC4 /* PartyEmojiLight.json in Resources */ = {isa = PBXBuildFile; fileRef = 42756AC324CCAFAC00F39BC4 /* PartyEmojiLight.json */; };
@@ -31,6 +30,9 @@
 		429FBBD3249FD2F80075FDA3 /* TaskCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */; };
 		429FBBD5249FD2F80075FDA3 /* GoalCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */; };
 		42A44FD1249187350039968B /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FD0249187350039968B /* ColorExtensions.swift */; };
+		42CE980D24EAA8A000A07439 /* TaskSadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE980C24EAA8A000A07439 /* TaskSadView.swift */; };
+		42CE981124EAA93B00A07439 /* SadEmojiDark.json in Resources */ = {isa = PBXBuildFile; fileRef = 42CE980F24EAA93B00A07439 /* SadEmojiDark.json */; };
+		42CE981224EAA93B00A07439 /* SadEmojiLight.json in Resources */ = {isa = PBXBuildFile; fileRef = 42CE981024EAA93B00A07439 /* SadEmojiLight.json */; };
 		42E9D474248987E000D66924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D473248987E000D66924 /* AppDelegate.swift */; };
 		42E9D476248987E000D66924 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D475248987E000D66924 /* SceneDelegate.swift */; };
 		42E9D479248987E000D66924 /* FocusOn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D477248987E000D66924 /* FocusOn.xcdatamodeld */; };
@@ -66,6 +68,9 @@
 		429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCoreDataProperties.swift; sourceTree = "<group>"; };
 		429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCoreDataProperties.swift; sourceTree = "<group>"; };
 		42A44FD0249187350039968B /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		42CE980C24EAA8A000A07439 /* TaskSadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSadView.swift; sourceTree = "<group>"; };
+		42CE980F24EAA93B00A07439 /* SadEmojiDark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SadEmojiDark.json; sourceTree = "<group>"; };
+		42CE981024EAA93B00A07439 /* SadEmojiLight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SadEmojiLight.json; sourceTree = "<group>"; };
 		42E9D470248987E000D66924 /* FocusOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E9D473248987E000D66924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42E9D475248987E000D66924 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4272D03D24B1346200FD2D9F /* SwiftUICharts in Frameworks */,
 				42756ABF24CCA80C00F39BC4 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +110,7 @@
 				42756AC524CCB0E500F39BC4 /* LottieView.swift */,
 				42756AD224CCCBA100F39BC4 /* GoalCompleted */,
 				42756ACB24CCC84A00F39BC4 /* TaskCompleted */,
+				42CE980E24EAA8AC00A07439 /* TaskUnchecked */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -189,6 +194,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		42CE980E24EAA8AC00A07439 /* TaskUnchecked */ = {
+			isa = PBXGroup;
+			children = (
+				42CE980C24EAA8A000A07439 /* TaskSadView.swift */,
+				42CE980F24EAA93B00A07439 /* SadEmojiDark.json */,
+				42CE981024EAA93B00A07439 /* SadEmojiLight.json */,
+			);
+			path = TaskUnchecked;
+			sourceTree = "<group>";
+		};
 		42E9D467248987DF00D66924 = {
 			isa = PBXGroup;
 			children = (
@@ -254,7 +269,6 @@
 			);
 			name = FocusOn;
 			packageProductDependencies = (
-				4272D03C24B1346200FD2D9F /* SwiftUICharts */,
 				42756ABE24CCA80C00F39BC4 /* Lottie */,
 			);
 			productName = FocusOn;
@@ -286,7 +300,6 @@
 			);
 			mainGroup = 42E9D467248987DF00D66924;
 			packageReferences = (
-				4247134924B000200058057F /* XCRemoteSwiftPackageReference "ChartAPI" */,
 				42756ABD24CCA80C00F39BC4 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 42E9D471248987E000D66924 /* Products */;
@@ -307,11 +320,13 @@
 				42756AC424CCAFAC00F39BC4 /* PartyEmojiLight.json in Resources */,
 				42756AD124CCCB8800F39BC4 /* ConfettiDark.json in Resources */,
 				42E9D480248987E000D66924 /* Preview Assets.xcassets in Resources */,
+				42CE981224EAA93B00A07439 /* SadEmojiLight.json in Resources */,
 				42756ACD24CCC8F900F39BC4 /* PartyEmojiDark.json in Resources */,
 				42756AD024CCCB8800F39BC4 /* ConfettiLight.json in Resources */,
 				42756ADA24CE10DC00F39BC4 /* LanternLight.json in Resources */,
 				42756AD924CE10DC00F39BC4 /* LanternDark.json in Resources */,
 				42E9D47D248987E000D66924 /* Assets.xcassets in Resources */,
+				42CE981124EAA93B00A07439 /* SadEmojiDark.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +348,7 @@
 				42E9D48E2489891300D66924 /* HistoryView.swift in Sources */,
 				42756AD424CCCBC100F39BC4 /* GoalCelebrationView.swift in Sources */,
 				42756ADC24CE1D5A00F39BC4 /* CollectionExtension.swift in Sources */,
+				42CE980D24EAA8A000A07439 /* TaskSadView.swift in Sources */,
 				429B29F224A6B03F0023E1EB /* HistorySubViews.swift in Sources */,
 				42E9D49224898E2300D66924 /* TodayView.swift in Sources */,
 				42756AD624CE0DC100F39BC4 /* UIScreenExtension.swift in Sources */,
@@ -542,14 +558,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4247134924B000200058057F /* XCRemoteSwiftPackageReference "ChartAPI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Gabiik96/ChartAPI.git";
-			requirement = {
-				kind = revision;
-				revision = c51eaaa6352cce9fe5a2d54449d7bbc4de3c1ddf;
-			};
-		};
 		42756ABD24CCA80C00F39BC4 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -561,11 +569,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4272D03C24B1346200FD2D9F /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4247134924B000200058057F /* XCRemoteSwiftPackageReference "ChartAPI" */;
-			productName = SwiftUICharts;
-		};
 		42756ABE24CCA80C00F39BC4 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 42756ABD24CCA80C00F39BC4 /* XCRemoteSwiftPackageReference "lottie-ios" */;

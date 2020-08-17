@@ -49,11 +49,12 @@ struct AppView: View {
         }
         .onAppear() {
             self.requestNotificationsAuth()
+//            self.demo.populateDemoData()
         }
-//                    .onAppear() { self.demo.populateDemoData()}
             .accentColor(.textColor)
     }
     
+    /// Ask user for permission to show notifications, if granted notifications will be created
     func requestNotificationsAuth() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
@@ -64,6 +65,7 @@ struct AppView: View {
         }
     }
     
+    /// Create notification with specified content inside this func, notifications are dependent on coreData fetch with today date
     func createNotification() {
         // remove all existing notifications
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
@@ -94,6 +96,7 @@ struct AppView: View {
         }
     }
     
+    /// Use input to create notification by date interval  if once is true, otherwise by time interval
     func notificationBase(title: String, subtitle: String? = "", body: String, once: Bool) {
         // make notification content
         let content = UNMutableNotificationContent()
