@@ -37,6 +37,7 @@ struct TodayView: View {
     @State var goalCelebrate = false
     @State var taskUnchecked = false
     
+    private let timeController = TimeController()
     private let dataController = DataController()
     
     var body: some View {
@@ -57,7 +58,7 @@ struct TodayView: View {
                             taskCelebrate: self.$taskCelebrate,
                             goalCelebrate: self.$goalCelebrate,
                             taskUnchecked: self.$taskUnchecked
-                        )
+                        ).onAppear() { self.yesterdayFetch.first!.createdAt = self.timeController.today }
                             .environment(\.managedObjectContext, self.moc)
                     } else {
                         TodayEmptyGoalView()
@@ -84,7 +85,7 @@ struct TodayView: View {
                       secondaryButton: .default(Text("No"), action: { self.showYesterdayGoal = false }))
             }
             .onAppear() {
-                if self.yesterdayFetch.count != 0 && self.yesterdayFetch.first?.complete == false {
+                if self.yesterdayFetch.count != 0 && self.yesterdayFetch.first?.complete == false && self.showYesterdayGoal == false {
                     self.showingAlert = true
                 }
             }
