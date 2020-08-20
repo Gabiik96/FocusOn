@@ -109,11 +109,11 @@ struct AppView: View {
         
         if once == true {
             // show this notification at corresponding date
-            trigger = UNCalendarNotificationTrigger(dateMatching: self.timeController.notificationDate(), repeats: true)
+            trigger = UNCalendarNotificationTrigger(dateMatching: self.timeController.notificationDate(7, 50), repeats: true)
             print("Notification created for date")
         } else {
             // show this notification in timeInterval from now
-            trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            trigger = UNTimeIntervalNotificationTrigger(timeInterval: 300, repeats: false)
             print("Notification created for time")
         }
         
