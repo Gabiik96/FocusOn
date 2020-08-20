@@ -8,7 +8,6 @@
 
 import SwiftUI
 import CoreData
-import SwiftUICharts
 
 struct ProgressView: View {
     

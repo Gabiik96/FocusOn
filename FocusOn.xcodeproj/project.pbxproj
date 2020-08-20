@@ -30,6 +30,7 @@
 		429FBBD3249FD2F80075FDA3 /* TaskCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */; };
 		429FBBD5249FD2F80075FDA3 /* GoalCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */; };
 		42A44FD1249187350039968B /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FD0249187350039968B /* ColorExtensions.swift */; };
+		42B85D1024EE969F002C3DF1 /* FocusOnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B85D0F24EE969F002C3DF1 /* FocusOnTests.swift */; };
 		42CE980D24EAA8A000A07439 /* TaskSadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE980C24EAA8A000A07439 /* TaskSadView.swift */; };
 		42CE981124EAA93B00A07439 /* SadEmojiDark.json in Resources */ = {isa = PBXBuildFile; fileRef = 42CE980F24EAA93B00A07439 /* SadEmojiDark.json */; };
 		42CE981224EAA93B00A07439 /* SadEmojiLight.json in Resources */ = {isa = PBXBuildFile; fileRef = 42CE981024EAA93B00A07439 /* SadEmojiLight.json */; };
@@ -44,6 +45,16 @@
 		42E9D4902489892700D66924 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D48F2489892700D66924 /* ProgressView.swift */; };
 		42E9D49224898E2300D66924 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9D49124898E2300D66924 /* TodayView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		42B85D1224EE969F002C3DF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42E9D468248987DF00D66924 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42E9D46F248987E000D66924;
+			remoteInfo = FocusOn;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4247131D24AFEA340058057F /* ProgressSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSubViews.swift; sourceTree = "<group>"; };
@@ -68,6 +79,9 @@
 		429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCoreDataProperties.swift; sourceTree = "<group>"; };
 		429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCoreDataProperties.swift; sourceTree = "<group>"; };
 		42A44FD0249187350039968B /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		42B85D0D24EE969F002C3DF1 /* FocusOnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusOnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42B85D0F24EE969F002C3DF1 /* FocusOnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOnTests.swift; sourceTree = "<group>"; };
+		42B85D1124EE969F002C3DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42CE980C24EAA8A000A07439 /* TaskSadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSadView.swift; sourceTree = "<group>"; };
 		42CE980F24EAA93B00A07439 /* SadEmojiDark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SadEmojiDark.json; sourceTree = "<group>"; };
 		42CE981024EAA93B00A07439 /* SadEmojiLight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SadEmojiLight.json; sourceTree = "<group>"; };
@@ -86,6 +100,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		42B85D0A24EE969F002C3DF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42E9D46D248987E000D66924 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -194,6 +215,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		42B85D0E24EE969F002C3DF1 /* FocusOnTests */ = {
+			isa = PBXGroup;
+			children = (
+				42B85D0F24EE969F002C3DF1 /* FocusOnTests.swift */,
+				42B85D1124EE969F002C3DF1 /* Info.plist */,
+			);
+			path = FocusOnTests;
+			sourceTree = "<group>";
+		};
 		42CE980E24EAA8AC00A07439 /* TaskUnchecked */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				42E9D472248987E000D66924 /* FocusOn */,
+				42B85D0E24EE969F002C3DF1 /* FocusOnTests */,
 				42E9D471248987E000D66924 /* Products */,
 				4272D03B24B1346200FD2D9F /* Frameworks */,
 			);
@@ -217,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				42E9D470248987E000D66924 /* FocusOn.app */,
+				42B85D0D24EE969F002C3DF1 /* FocusOnTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,6 +287,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		42B85D0C24EE969F002C3DF1 /* FocusOnTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42B85D1424EE969F002C3DF1 /* Build configuration list for PBXNativeTarget "FocusOnTests" */;
+			buildPhases = (
+				42B85D0924EE969F002C3DF1 /* Sources */,
+				42B85D0A24EE969F002C3DF1 /* Frameworks */,
+				42B85D0B24EE969F002C3DF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42B85D1324EE969F002C3DF1 /* PBXTargetDependency */,
+			);
+			name = FocusOnTests;
+			productName = FocusOnTests;
+			productReference = 42B85D0D24EE969F002C3DF1 /* FocusOnTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		42E9D46F248987E000D66924 /* FocusOn */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42E9D487248987E000D66924 /* Build configuration list for PBXNativeTarget "FocusOn" */;
@@ -281,10 +331,14 @@
 		42E9D468248987DF00D66924 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Gabriel Balta";
 				TargetAttributes = {
+					42B85D0C24EE969F002C3DF1 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 42E9D46F248987E000D66924;
+					};
 					42E9D46F248987E000D66924 = {
 						CreatedOnToolsVersion = 11.4.1;
 					};
@@ -307,11 +361,19 @@
 			projectRoot = "";
 			targets = (
 				42E9D46F248987E000D66924 /* FocusOn */,
+				42B85D0C24EE969F002C3DF1 /* FocusOnTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		42B85D0B24EE969F002C3DF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42E9D46E248987E000D66924 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,6 +395,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		42B85D0924EE969F002C3DF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42B85D1024EE969F002C3DF1 /* FocusOnTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42E9D46C248987E000D66924 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,6 +436,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		42B85D1324EE969F002C3DF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42E9D46F248987E000D66924 /* FocusOn */;
+			targetProxy = 42B85D1224EE969F002C3DF1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		42E9D481248987E000D66924 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -378,6 +456,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		42B85D1524EE969F002C3DF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4YKPW2G86;
+				INFOPLIST_FILE = FocusOnTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = GabrielBalta.FocusOnTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FocusOn.app/FocusOn";
+			};
+			name = Debug;
+		};
+		42B85D1624EE969F002C3DF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q4YKPW2G86;
+				INFOPLIST_FILE = FocusOnTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = GabrielBalta.FocusOnTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FocusOn.app/FocusOn";
+			};
+			name = Release;
+		};
 		42E9D485248987E000D66924 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -537,6 +657,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		42B85D1424EE969F002C3DF1 /* Build configuration list for PBXNativeTarget "FocusOnTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42B85D1524EE969F002C3DF1 /* Debug */,
+				42B85D1624EE969F002C3DF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		42E9D46B248987DF00D66924 /* Build configuration list for PBXProject "FocusOn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
