@@ -54,6 +54,8 @@ struct AppView: View {
             .accentColor(.textColor)
     }
     
+    // MARK: - Notifications
+    
     /// Ask user for permission to show notifications, if granted notifications will be created
     func requestNotificationsAuth() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
@@ -125,8 +127,5 @@ struct AppView: View {
     }
     
 }
-
-
-
 
 

@@ -11,6 +11,8 @@ import CoreData
 
 class DataController {
     
+    static let shared = DataController()
+    
     var goals = [Goal]()
     var timeController = TimeController()
     

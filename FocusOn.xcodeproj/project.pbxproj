@@ -30,7 +30,7 @@
 		429FBBD3249FD2F80075FDA3 /* TaskCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBCF249FD2F80075FDA3 /* TaskCoreDataProperties.swift */; };
 		429FBBD5249FD2F80075FDA3 /* GoalCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */; };
 		42A44FD1249187350039968B /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A44FD0249187350039968B /* ColorExtensions.swift */; };
-		42B85D1024EE969F002C3DF1 /* FocusOnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B85D0F24EE969F002C3DF1 /* FocusOnTests.swift */; };
+		42B85D1024EE969F002C3DF1 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B85D0F24EE969F002C3DF1 /* CoreDataTests.swift */; };
 		42CE980D24EAA8A000A07439 /* TaskSadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE980C24EAA8A000A07439 /* TaskSadView.swift */; };
 		42CE981124EAA93B00A07439 /* SadEmojiDark.json in Resources */ = {isa = PBXBuildFile; fileRef = 42CE980F24EAA93B00A07439 /* SadEmojiDark.json */; };
 		42CE981224EAA93B00A07439 /* SadEmojiLight.json in Resources */ = {isa = PBXBuildFile; fileRef = 42CE981024EAA93B00A07439 /* SadEmojiLight.json */; };
@@ -80,7 +80,7 @@
 		429FBBD1249FD2F80075FDA3 /* GoalCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCoreDataProperties.swift; sourceTree = "<group>"; };
 		42A44FD0249187350039968B /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		42B85D0D24EE969F002C3DF1 /* FocusOnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusOnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		42B85D0F24EE969F002C3DF1 /* FocusOnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOnTests.swift; sourceTree = "<group>"; };
+		42B85D0F24EE969F002C3DF1 /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		42B85D1124EE969F002C3DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42CE980C24EAA8A000A07439 /* TaskSadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSadView.swift; sourceTree = "<group>"; };
 		42CE980F24EAA93B00A07439 /* SadEmojiDark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SadEmojiDark.json; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 		42B85D0E24EE969F002C3DF1 /* FocusOnTests */ = {
 			isa = PBXGroup;
 			children = (
-				42B85D0F24EE969F002C3DF1 /* FocusOnTests.swift */,
+				42B85D0F24EE969F002C3DF1 /* CoreDataTests.swift */,
 				42B85D1124EE969F002C3DF1 /* Info.plist */,
 			);
 			path = FocusOnTests;
@@ -399,7 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42B85D1024EE969F002C3DF1 /* FocusOnTests.swift in Sources */,
+				42B85D1024EE969F002C3DF1 /* CoreDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
